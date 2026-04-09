@@ -1,0 +1,2973 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- ═══════════════════════════════════════════════════════════════
+         🔧 ZONE 1/5 : TITRES ET MÉTADONNÉES - DÉBUT
+         ═══════════════════════════════════════════════════════════════
+         INSTRUCTIONS DE MODIFICATION :
+         
+         1. Remplacer "I.23-I.31" par votre nouvelle série
+            Exemple : "II.01-II.15" ou "III.01-III.10"
+         
+         2. Remplacer "Vibhūti Pāda" par le nom du chapitre
+            Chapitre I = Samādhi Pāda
+            Chapitre II = Sādhana Pāda
+            Chapitre III = Vibhūti Pāda
+            Chapitre IV = Kaivalya Pāda
+         
+         3. Mettre à jour le numéro de version
+            Nouvelle série = v1.0
+            Corrections mineures = v1.1, v1.2, etc.
+            Refonte majeure = v2.0
+         
+         ATTENTION : Ne pas toucher aux balises HTML <title> et </title>
+         ════════════════════════════════════════════════════════════ -->
+    <title>Yoga Sutras II.01-II.15 - Sādhana Pāda v1.0</title>
+    <!-- ═══════════════════════════════════════════════════════════════
+         FIN ZONE 1/5 : TITRES ET MÉTADONNÉES
+         ════════════════════════════════════════════════════════════ -->
+    
+    <!-- ═══════════════════════════════════════════════════════════════
+         ⛔ ZONE 5/5 : CSS - NE PAS MODIFIER - DÉBUT
+         ════════════════════════════════════════════════════════════ -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 10px;
+            color: #333;
+        }
+
+        #app {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #header {
+            background: linear-gradient(135deg, #155d9f 0%, #1e88e5 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #header h1 {
+            font-size: 1.5em;
+            margin-bottom: 8px;
+        }
+
+        #modeSelector {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .mode-button {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 100px;
+            max-width: 130px;
+        }
+
+        .mode-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .mode-button.active {
+            background-color: white;
+            color: #155d9f;
+            border-color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        #scoreDiv {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95em;
+            gap: 8px;
+        }
+
+        #modeIndicator {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .score-label, .group-selector {
+            background-color: rgba(255, 255, 255, 0.25);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 15px;
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            font-size: 0.85em;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            user-select: none;
+        }
+
+        .group-selector {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .group-selector:hover {
+            background-color: rgba(255, 255, 255, 0.35);
+            transform: scale(1.05);
+        }
+
+        #levelButton {
+            background-color: rgba(255, 255, 255, 0.25);
+            color: white;
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            user-select: none;
+            font-weight: 600;
+        }
+
+        #levelButton:hover {
+            background-color: rgba(255, 255, 255, 0.35);
+            transform: scale(1.05);
+        }
+
+        #levelButton.advanced {
+            background-color: rgba(220, 53, 69, 0.3);
+            border-color: rgba(220, 53, 69, 0.7);
+        }
+
+        #levelButton.advanced:hover {
+            background-color: rgba(220, 53, 69, 0.4);
+        }
+
+        .level-icon {
+            font-size: 1em;
+        }
+
+        .level-letter {
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .inline-start-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #155d9f;
+            color: white !important;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 8px;
+            vertical-align: middle;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .inline-start-btn:hover {
+            background-color: #1976d2;
+            transform: scale(1.1);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .inline-start-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .inline-start-btn {
+                background-color: #2d5a8f;
+            }
+            .inline-start-btn:hover {
+                background-color: #3d6fa7;
+            }
+        }
+
+        #questionBox {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .scrollable-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: linear-gradient(to bottom, #e0f2ff 0%, #ffffff 100%);
+        }
+
+        .scrollable-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 10px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-thumb {
+            background: #155d9f;
+            border-radius: 10px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-thumb:hover {
+            background: #0d4272;
+        }
+
+        #content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        #reviewTitleSection {
+            background: white;
+            padding: 15px 20px;
+            text-align: center;
+            border-bottom: 3px solid #155d9f;
+            display: none;
+        }
+
+        #reviewTitle {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .review-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #155d9f;
+        }
+
+        .review-title h2 {
+            margin: 0;
+            color: #155d9f;
+        }
+
+        .review-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .review-item-content {
+            flex: 1;
+        }
+
+        .review-item {
+            background-color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 4px solid #155d9f;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .review-advanced {
+            border-left-color: #c82333;
+            background-color: #fff5f5;
+        }
+
+        .review-question-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .question-level {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .question-level.review-mode {
+            padding: 6px 12px;
+            font-size: 0.8em;
+        }
+
+        .level-basic {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .level-medium {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .level-advanced {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .encouragement {
+            text-align: center;
+            color: #1e7e34;
+            font-size: 0.95em;
+            margin-top: 15px;
+            font-weight: 600;
+            padding: 8px;
+            background-color: rgba(40, 167, 69, 0.1);
+            border-radius: 8px;
+        }
+
+        .sutra-item {
+            background-color: white;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .sutra-item-content {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .icon-display {
+            font-size: 2em;
+            flex-shrink: 0;
+        }
+
+        .sutra-number {
+            font-weight: bold;
+            color: #155d9f;
+            font-size: 1.1em;
+            margin: 0 0 8px 0;
+            flex-shrink: 0;
+            min-width: 50px;
+        }
+
+        .sutra-text {
+    color: #333;
+    line-height: 1.6;
+    flex: 1;
+    font-style: italic;
+}
+
+        .flashcard-question-card {
+            background: linear-gradient(135deg, #155d9f 0%, #1976d2 100%);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            color: white;
+        }
+
+        .flashcard-question-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+
+        .flashcard-question-text {
+            font-size: 1.15em;
+            line-height: 1.7;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        .flashcard-instruction {
+            background-color: #fff3e0;
+            border: 2px dashed #ff9800;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            font-size: 0.95em;
+            color: #e65100;
+            font-weight: 600;
+        }
+
+        .flashcard-sutra-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e0e0e0;
+        }
+
+        .flashcard-sutra-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .flashcard-sutra-number {
+            font-size: 1.05em;
+            font-weight: 700;
+            color: #155d9f;
+        }
+
+        .flashcard-card-spacing {
+            margin-bottom: 15px;
+        }
+
+        .flashcard-instructor-spacing {
+            margin-bottom: 15px;
+        }
+
+        .flashcard-sutra-spacing {
+            margin-top: 15px;
+        }
+
+        .quiz-landscape-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .quiz-question-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quiz-sutra-panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quiz-answer-input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #155d9f;
+            font-size: 1em;
+            font-family: inherit;
+            resize: vertical;
+            background-color: #fafafa;
+            transition: all 0.2s;
+        }
+
+        .quiz-answer-input:focus {
+            outline: none;
+            border-color: #1976d2;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(21, 93, 159, 0.1);
+        }
+
+        .mnemonic-phrase-container {
+            text-align: center;
+            padding: 15px 20px;
+            background: white;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .mnemonic-phrase-title {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .mnemonic-phrase-text {
+            font-size: 1em;
+            color: #155d9f;
+            font-weight: 500;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .mnemonic {
+            font-style: italic;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .hint {
+            background-color: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 8px;
+            border: 2px solid #155d9f;
+            font-size: 1em;
+            font-family: inherit;
+            resize: vertical;
+            background-color: #fafafa;
+            transition: all 0.2s;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #1976d2;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(21, 93, 159, 0.1);
+        }
+
+        #answer-section {
+            padding: 0 20px 15px;
+            background: linear-gradient(to bottom, #ffffff 0%, #e0f2ff 100%);
+        }
+
+        #flashcardEvaluation {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 2px solid #dee2e6;
+        }
+
+        .evaluation-title {
+            text-align: center;
+            font-size: 1em;
+            color: #155d9f;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .evaluation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .eval-btn {
+            flex: 1;
+            max-width: 150px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .eval-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .eval-btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-correct {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-correct:hover {
+            background-color: #218838;
+        }
+
+        .btn-partial {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        .btn-partial:hover {
+            background-color: #e0a800;
+        }
+
+        .btn-incorrect {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-incorrect:hover {
+            background-color: #c82333;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .feedback.correct {
+            background-color: #d4edda;
+            border: 2px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .feedback.partial {
+            background-color: #fff3cd;
+            border: 2px solid #ffeaa7;
+            color: #856404;
+        }
+
+        .feedback.incorrect {
+            background-color: #f8d7da;
+            border: 2px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        #buttonArea {
+            padding: 15px 20px;
+            background: white;
+            border-top: 2px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            flex: 1;
+            min-width: 120px;
+            max-width: 180px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .action-btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background-color: #155d9f;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0d4272;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+        .individual-audio-btn {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            border-radius: 50%;
+            background-color: #155d9f;
+            color: white;
+            border: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .individual-audio-btn:hover {
+            background-color: #1976d2;
+            transform: scale(1.1);
+        }
+
+        .individual-audio-btn:active {
+            transform: scale(0.95);
+        }
+
+        .individual-audio-btn.playing {
+            background-color: #28a745;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        @keyframes clickPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+
+        .click-animation {
+            animation: clickPulse 0.2s ease-in-out;
+        }
+
+        .quiz-verify-appear {
+            animation: verifyAppear 0.5s ease-out;
+        }
+
+        @keyframes verifyAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            #header h1 {
+                font-size: 1.3em;
+            }
+
+            .mode-button {
+                font-size: 0.85em;
+                padding: 6px 10px;
+            }
+
+            .action-btn {
+                font-size: 0.9em;
+                padding: 10px 15px;
+            }
+        }
+
+        @media (orientation: landscape) and (min-width: 600px) {
+            #questionBox.landscape {
+                min-height: 400px;
+            }
+
+            .scrollable-content.landscape {
+                padding: 15px;
+            }
+
+            #flashcardEvaluation.landscape {
+                padding: 12px 15px;
+            }
+        }
+    </style>
+    <!-- ═══════════════════════════════════════════════════════════════
+         FIN ZONE 5/5 : CSS - NE PAS MODIFIER
+         ════════════════════════════════════════════════════════════ -->
+</head>
+<body>
+    <div id="app">
+        <div id="header">
+            <!-- ═══════════════════════════════════════════════════════════════
+                 🔧 ZONE 1/5 (suite) : TITRE PRINCIPAL VISIBLE - DÉBUT
+                 ═══════════════════════════════════════════════════════════════
+                 INSTRUCTIONS :
+                 
+                 Ligne <h1> suivante :
+                 - Remplacer "I.23-I.31" par votre nouvelle série
+                 - Exemple : "II.01-II.15" ou "III.01-III.10"
+                 
+                 Ligne <span> suivante :
+                 - Remplacer "Vibhūti Pāda" par le nom du chapitre
+                 - Sādhana Pāda, Samādhi Pāda, Kaivalya Pāda, etc.
+                 
+                 ATTENTION : Conserver l'emoji 🕉️ et la structure HTML
+                 ════════════════════════════════════════════════════════════ -->
+            <h1>🕉️ Yoga Sutras II.01-II.15<br><span style="font-size: 0.7em;">Sādhana Pāda</span></h1>
+            <!-- ═══════════════════════════════════════════════════════════════
+                 FIN ZONE 1/5 : TITRE PRINCIPAL VISIBLE
+                 ════════════════════════════════════════════════════════════ -->
+            
+            <!-- ⛔ Boutons de navigation - NE PAS MODIFIER -->
+            <div id="modeSelector">
+                <button class="mode-button active" onclick="setMode('sutras', event)">📖 Sutras</button>
+                <button class="mode-button" onclick="setMode('flashcard', event)">🎴 Flashcard</button>
+                <button class="mode-button" onclick="setMode('quiz', event)">📝 Quiz</button>
+                <button class="mode-button" onclick="setMode('review', event)">📚 Révision</button>
+            </div>
+            
+            <div id="scoreDiv">
+                <div id="modeIndicator">
+                    <span class="score-label">Score : <span id="score">0/0</span></span>
+                    <span class="group-selector" onclick="toggleGroup()" style="display: none;">Groupe <span id="groupNumber">1</span>/3</span>
+                </div>
+                <button id="levelButton" onclick="toggleBasicMode()">
+                    <span class="level-icon">🌿</span>
+                    <span class="level-letter">B</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- ═══════════════════════════════════════════════════════════════
+             🔧 ZONE 2/5 : PHRASE MNÉMOTECHNIQUE GÉNÉRALE - DÉBUT
+             ═══════════════════════════════════════════════════════════════
+             INSTRUCTIONS :
+             
+             1. Remplacer UNIQUEMENT le texte entre les balises
+                <div class="mnemonic-phrase-text"> et </div>
+             
+             2. La phrase doit résumer TOUS les sutras de votre série
+             
+             3. Utiliser des chiffres en exposant pour référencer chaque sutra
+                Exemple pour 15 sutras : ...¹, ...², ...³, ... ...¹⁵
+             
+             4. Garder la structure : sujet + verbes + concepts clés
+             
+             EXEMPLE pour II.01-II.15 :
+             Par l'effort, l'étude et le lâcher-prise¹, on apaise² les cinq 
+             poisons³ : l'ignorance⁴...
+             
+             ATTENTION : Ne pas toucher aux balises HTML
+             ════════════════════════════════════════════════════════════ -->
+        <div class="mnemonic-phrase-container" id="mnemonicPhraseContainer">
+            <div class="mnemonic-phrase-title">Phrase mnémotechnique des sutras :</div>
+            <div class="mnemonic-phrase-text">
+                Par l'effort, l'étude et le lâcher-prise¹, on apaise² les cinq poisons³ : l'ignorance⁴ nourrit⁵ l'ego⁶, l'attachement⁷ et l'aversion⁸ qui mènent⁹ à la peur de mourir¹⁰ ; ces afflictions¹¹ créent¹² le karma¹³ dont les fruits¹⁴ sont souffrance¹⁵.
+            </div>
+        </div>
+        <!-- ═══════════════════════════════════════════════════════════════
+             FIN ZONE 2/5 : PHRASE MNÉMOTECHNIQUE GÉNÉRALE
+             ════════════════════════════════════════════════════════════ -->
+        
+        <div id="reviewTitleSection">
+            <h2 id="reviewTitle"></h2>
+        </div>
+
+        <div id="questionBox">
+            <div class="scrollable-content">
+                <div id="content"></div>
+                <div id="hint" class="hint" style="display: none;"></div>
+                <div id="feedback" class="feedback" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div id="answer-section" style="display: none;">
+            <textarea id="answer" class="answer-input" rows="6" placeholder="Tapez votre réponse ici..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+        </div>
+
+        <div id="flashcardEvaluation" style="display: none;">
+            <div class="evaluation-title">Comment avez-vous répondu ?</div>
+            <div class="evaluation-buttons">
+                <button class="eval-btn btn-correct" onclick="evaluateFlashcard(1)">✅ Parfait</button>
+                <button class="eval-btn btn-partial" onclick="evaluateFlashcard(0.5)">≈ Moyen</button>
+                <button class="eval-btn btn-incorrect" onclick="evaluateFlashcard(0)">✗ Raté</button>
+            </div>
+        </div>
+
+        <div id="buttonArea">
+            <button id="startBtn" class="action-btn btn-primary" onclick="start()" style="display: none;">▶️ Commencer</button>
+            <button id="flipBtn" class="action-btn btn-primary" onclick="flipCard()" style="display: none;">🔄 Retourner</button>
+            <button id="hintBtn" class="action-btn btn-warning" onclick="showHint()" style="display: none;">💡 Indice</button>
+            <button id="answerBtn" class="action-btn btn-secondary" onclick="focusAnswerField()" style="display: none;">✍️ Votre réponse</button>
+            <button id="submitBtn" class="action-btn btn-success" onclick="checkAnswer()" style="display: none;">✓ Vérifier</button>
+            <button id="nextBtn" class="action-btn btn-primary" onclick="nextQuestion()" style="display: none;">Suivant →</button>
+            <button id="bonusBtn" class="action-btn btn-warning" onclick="startBonusRound()" style="display: none;">🎯 Tour Bonus</button>
+        </div>
+    </div>
+
+    <script>
+        /* ═══════════════════════════════════════════════════════════════
+           🔧 ZONE 3/5 : CONFIGURATION AUDIO MP3 - DÉBUT
+           ═══════════════════════════════════════════════════════════════
+           INSTRUCTIONS :
+           
+           1. URL DE BASE (MP3_BASE_URL) :
+              - Modifier si vos MP3 sont hébergés ailleurs
+              - Garder le "/" final
+              - Par défaut : https://jimb44.github.io/yoga-sutras-audio/
+           
+           2. LISTE DES FICHIERS (MP3_FILES) :
+              - Format OBLIGATOIRE : "NUMERO": "nom-fichier.mp3",
+              - Remplacer TOUS les sutras par votre nouvelle série
+              - ATTENTION aux virgules : après chaque ligne SAUF la dernière
+              - ATTENTION aux guillemets : doubles " partout
+           
+           EXEMPLE pour II.01-II.15 :
+           const MP3_FILES = {
+               "II.01": "sutra-II-01.mp3",
+               "II.02": "sutra-II-02.mp3",
+               "II.03": "sutra-II-03.mp3",
+               "II.04": "sutra-II-4.mp3",     // ⚠️ Anomalie possible dans noms
+               ...
+               "II.15": "sutra-II-15.mp3"     // ⚠️ PAS DE VIRGULE sur dernière ligne
+           };
+           
+           VÉRIFICATION POST-MODIFICATION :
+           - Ouvrir le fichier dans navigateur
+           - F12 → Console
+           - Vérifier : ZÉRO erreur rouge
+           - Si erreur "Unexpected token" → problème virgule/guillemet
+           
+           ════════════════════════════════════════════════════════════ */
+        const MP3_BASE_URL = "https://jimb44.github.io/yoga-sutras-audio/";
+        
+        const MP3_FILES = {
+            "II.01": "sutra-II-01.mp3",
+    "II.02": "sutra-II-02.mp3",
+    "II.03": "sutra-II-03.mp3",
+    "II.04": "sutra-II-4.mp3",
+    "II.05": "sutra-II-05.mp3",
+    "II.06": "sutra-II-06.mp3",
+    "II.07": "sutra-II-07.mp3",
+    "II.08": "sutra-II-08.mp3",
+    "II.09": "sutra-II-09.mp3",
+    "II.10": "sutra-II-10.mp3",
+    "II.11": "sutra-II-11.mp3",
+    "II.12": "sutra-II-12.mp3",
+    "II.13": "sutra-II-13.mp3",
+    "II.14": "sutra-II-14.mp3",
+    "II.15": "sutra-II-15.mp3"
+        };
+        /* ═══════════════════════════════════════════════════════════════
+           FIN ZONE 3/5 : CONFIGURATION AUDIO MP3
+           ════════════════════════════════════════════════════════════ */
+
+        /* ⛔ Variables globales - NE PAS MODIFIER - DÉBUT */
+        var audioState = {
+            currentAudio: null,
+            currentButton: null,
+            isPlaying: false,
+            audioElements: {}
+        };
+
+        var isBasicMode = true;
+        var currentMode = 'sutras';
+        var currentIndex = 0;
+        var score = 0;
+        var totalQuestions = 0;
+        var shuffledQuestions = [];
+        var showingFront = true;
+        var flashcardEvaluated = false;
+        var quizEvaluated = false;
+        
+        var flashcardGroup = 1;
+        var quizGroup = 1;
+        var isSessionActive = false;
+        var isBonusRound = false;
+        var bonusQuestions = [];
+        var originalQuestions = [];
+        var originalScore = 0;
+        var failedQuestions = [];
+        /* FIN Variables globales - NE PAS MODIFIER */
+
+        /* ═══════════════════════════════════════════════════════════════
+           🔧 ZONE 4/5 : DONNÉES DES SUTRAS - DÉBUT
+           ═══════════════════════════════════════════════════════════════
+           ⚠️⚠️⚠️ ZONE CRITIQUE - LIRE ATTENTIVEMENT ⚠️⚠️⚠️
+           
+           Cette zone contient TOUTES les données de vos sutras.
+           C'est la partie la PLUS LONGUE et la PLUS IMPORTANTE à modifier.
+           
+           ┌─────────────────────────────────────────────────────────────┐
+           │ STRUCTURE OBLIGATOIRE POUR CHAQUE SUTRA                     │
+           └─────────────────────────────────────────────────────────────┘
+           
+           {
+               number: "XX.YY",           // Ex: "II.01", "II.15"
+               icon: "emoji",             // Ex: "🔥", "🎯", "😰"
+               text: "Texte complet du sutra en français",
+               mnemonic: "Mot-Clé",       // Ex: "Tapas-Étude-Abandon"
+               questions: [
+                   // ▼ QUESTION 1 : BASIQUE (obligatoire)
+                   {
+                       question: "Question simple ?",
+                       answer: "Réponse courte",
+                       level: "basic",
+                       hint: "Indice",
+                       qnum: "QXXYY"      // Ex: "QII01" pour II.01
+                   },
+                   // ▼ QUESTION 2 : MEDIUM (obligatoire)
+                   {
+                       question: "Question moyenne ?",
+                       answer: "Réponse développée",
+                       level: "medium",
+                       hint: "Indice",
+                       qnum: "QXXYYm1"    // Ex: "QII01m1"
+                   },
+                   // ▼ QUESTION 3 : MEDIUM (obligatoire)
+                   {
+                       question: "Deuxième question moyenne ?",
+                       answer: "Autre réponse développée",
+                       level: "medium",
+                       hint: "Indice",
+                       qnum: "QXXYYm2"    // Ex: "QII01m2"
+                   },
+                   // ▼ QUESTION 4 : ADVANCED (obligatoire)
+                   {
+                       question: "Question approfondie ?",
+                       answer: "Réponse très développée avec analyse",
+                       level: "advanced",
+                       hint: "Indice conceptuel",
+                       qnum: "QXXYYa1"    // Ex: "QII01a1"
+                   },
+                   // ▼ QUESTION 5 : ADVANCED (obligatoire)
+                   {
+                       question: "Question complexe ?",
+                       answer: "Réponse philosophique approfondie",
+                       level: "advanced",
+                       hint: "Indice abstrait",
+                       qnum: "QXXYYa2"    // Ex: "QII01a2"
+                   }
+               ]
+           },
+           
+           ┌─────────────────────────────────────────────────────────────┐
+           │ RÈGLES CRITIQUES DE SYNTAXE                                 │
+           └─────────────────────────────────────────────────────────────┘
+           
+           ✓ VIRGULES :
+             - Après chaque } d'un sutra SAUF le dernier
+             - Après chaque } d'une question SAUF la dernière du sutra
+             - PAS de virgule après le dernier élément d'une liste
+           
+           ✓ GUILLEMETS :
+             - Toujours doubles "
+             - Pour guillemets DANS le texte : utiliser \"
+             - Exemple : "Il dit \"bonjour\" à tous"
+           
+           ✓ ACCOLADES :
+             - Chaque { doit avoir son }
+             - Questions entre [ et ]
+             - Sutra entre { et }
+           
+           ✓ NIVEAUX :
+             - Orthographe EXACTE : "basic", "medium", "advanced"
+             - Minuscules obligatoires
+             - 1 basic + 2 medium + 2 advanced = 5 questions par sutra
+           
+           ┌─────────────────────────────────────────────────────────────┐
+           │ MÉTHODOLOGIE DE REMPLACEMENT RECOMMANDÉE                    │
+           └─────────────────────────────────────────────────────────────┘
+           
+           OPTION A : Remplacement complet (rapide mais risqué)
+           1. Sélectionner TOUT le tableau sutrasData
+           2. Copier dans fichier backup.txt
+           3. Remplacer par vos nouveaux sutras
+           4. Tester immédiatement
+           
+           OPTION B : Remplacement progressif (sûr mais long)
+           1. Remplacer le PREMIER sutra uniquement
+           2. Tester → F5 navigateur + F12 Console
+           3. Si OK, remplacer le DEUXIÈME sutra
+           4. Répéter jusqu'au dernier
+           
+           ┌─────────────────────────────────────────────────────────────┐
+           │ VÉRIFICATION POST-MODIFICATION                              │
+           └─────────────────────────────────────────────────────────────┘
+           
+           1. Ouvrir le fichier HTML dans navigateur
+           2. Appuyer F12 → Onglet "Console"
+           3. Vérifier : ZÉRO ligne rouge d'erreur
+           4. Tester mode "📖 Sutras" → tous sutras s'affichent
+           5. Tester mode "📝 Quiz" → questions apparaissent
+           
+           Si ERREUR dans Console :
+           - "Unexpected token" → Problème virgule ou guillemet
+           - "Unexpected end" → Accolade non fermée
+           - Ligne indiquée → Regarder ligne précédente aussi
+           
+           ════════════════════════════════════════════════════════════ */
+
+        const sutrasData = [
+            // ▼ SUTRA II.01
+    {
+        number: "II.01",
+        icon: "🔥",
+        text: "Le Yoga de l'action se pratique selon trois modalités inséparables : un effort soutenu, la conscience intérieure de soi et l'abandon au Seigneur.",
+        mnemonic: "Tapas-Étude-Abandon",
+        questions: [
+            {
+                question: "Quels sont les trois piliers du Kriyā-yoga ?",
+                answer: "Tapas (discipline ardente), svādhyāya (étude de soi et des textes), īśvara-praṇidhāna (abandon au Seigneur)",
+                level: "basic",
+                hint: "Trois pratiques fondamentales",
+                qnum: "QII01"
+            },
+            {
+                question: "Que signifie tapas dans le contexte du Kriyā-yoga ?",
+                answer: "Tapas signifie discipline ardente, ascèse, l'effort soutenu qui purifie et transforme. C'est la chaleur intérieure qui brûle les impuretés.",
+                level: "medium",
+                hint: "Feu purificateur",
+                qnum: "QII01m1"
+            },
+            {
+                question: "Comment svādhyāya diffère-t-il de la simple lecture ?",
+                answer: "Svādhyāya n'est pas lecture passive mais étude transformatrice : récitation des textes sacrés, contemplation de leur sens, et surtout observation de soi (sva = soi, adhyāya = étude).",
+                level: "medium",
+                hint: "Étude qui transforme",
+                qnum: "QII01m2"
+            },
+            {
+                question: "Analysez pourquoi Patañjali commence le Sādhana Pāda par le Kriyā-yoga plutôt que par les yamas et niyamas",
+                answer: "Le Kriyā-yoga (action yogique) offre un point d'entrée pratique et concret. Contrairement aux yamas/niyamas qui peuvent sembler abstraits, tapas-svādhyāya-īśvara-praṇidhāna sont des pratiques immédiatement applicables qui préparent le terrain pour les observances éthiques plus subtiles. Patañjali va du praticable vers le raffiné.",
+                level: "advanced",
+                hint: "Pédagogie progressive",
+                qnum: "QII01a1"
+            },
+            {
+                question: "Développez la relation entre les trois piliers du Kriyā-yoga et leur fonction psycho-spirituelle",
+                answer: "Tapas agit sur le corps et les habitudes (niveau grossier), svādhyāya sur l'intellect et la compréhension (niveau subtil), īśvara-praṇidhāna sur l'ego et l'identification (niveau causal). Ensemble, ils forment une triade complète : purification (tapas), connaissance (svādhyāya), abandon de la volonté propre (īśvara-praṇidhāna). Chacun compense les limites des autres.",
+                level: "advanced",
+                hint: "Triade complémentaire",
+                qnum: "QII01a2"
+            }
+        ]
+    },
+            
+            // ▼ SUTRA II.02
+    {
+        number: "II.02",
+        icon: "🎯",
+        text: "Ce Yoga de l'action a pour but d'atténuer les causes de souffrance et de permettre le Samādhi.",
+        mnemonic: "Samādhi-Affaiblir-Kleśas",
+        questions: [
+            {
+                question: "Quels sont les deux objectifs du Kriyā-yoga ?",
+                answer: "Cultiver le samādhi et affaiblir les kleśas (afflictions)",
+                level: "basic",
+                hint: "Double visée",
+                qnum: "QII02"
+            },
+            {
+                question: "Que signifie 'affaiblir' (tanū-karaṇa) les kleśas plutôt que les 'éliminer' ?",
+                answer: "Affaiblir (tanū-karaṇa = amincir, atténuer) suggère un processus graduel. Les kleśas ne disparaissent pas d'un coup mais perdent progressivement leur pouvoir de conditionnement. C'est plus réaliste que l'élimination brutale.",
+                level: "medium",
+                hint: "Processus progressif",
+                qnum: "QII02m1"
+            },
+            {
+                question: "Comment le Kriyā-yoga 'cultive' (bhāvanā) le samādhi ?",
+                answer: "Bhāvanā signifie cultiver, faire croître. Le samādhi n'est pas forcé mais cultivé comme une plante : tapas prépare le terrain, svādhyāya sème la graine de connaissance, īśvara-praṇidhāna crée les conditions de maturation.",
+                level: "medium",
+                hint: "Métaphore agricole",
+                qnum: "QII02m2"
+            },
+            {
+                question: "Analysez la relation causale entre affaiblissement des kleśas et établissement du samādhi",
+                answer: "Les kleśas sont les obstacles au samādhi. En les affaiblissant (par tapas/svādhyāya/īśvara-praṇidhāna), on ne 'produit' pas le samādhi mais on lève ce qui l'empêchait. Le samādhi est notre état naturel, voilé par les kleśas. L'affaiblissement est donc condition négative (enlever l'obstacle), le samādhi est résultat positif (révélation de ce qui était caché).",
+                level: "advanced",
+                hint: "Voilement et dévoilement",
+                qnum: "QII02a1"
+            },
+            {
+                question: "Pourquoi Patañjali parle-t-il de 'cultiver' le samādhi alors que dans le chapitre I il semblait déjà atteint ?",
+                answer: "Chapitre I (Samādhi Pāda) décrit la nature du samādhi pour celui qui y accède spontanément ou par grâce. Chapitre II (Sādhana Pāda) s'adresse à ceux qui doivent le cultiver par effort (abhyāsa). Même distinction qu'entre bhakti (grâce) et karma (effort). Les deux voies sont valides, mais ici Patañjali enseigne la voie de la pratique méthodique.",
+                level: "advanced",
+                hint: "Grâce vs. effort",
+                qnum: "QII02a2"
+            }
+        ]
+    },
+            
+            // ▼ SUTRA II.03
+    {
+        number: "II.03",
+        icon: "☠️",
+        text: "Les causes de souffrance sont l'aveuglement, le sentiment de l'ego, le désir de prendre, le refus d'accepter, l'attachement à la vie.",
+        mnemonic: "5-Kleśas",
+        questions: [
+            {
+                question: "Quelles sont les cinq afflictions (kleśas) ?",
+                answer: "Avidyā (ignorance), asmitā (ego), rāga (attachement), dveṣa (aversion), abhiniveśa (peur de mourir)",
+                level: "basic",
+                hint: "Cinq poisons",
+                qnum: "QII03"
+            },
+            {
+                question: "Pourquoi ces états mentaux sont-ils appelés 'kleśas' (afflictions) ?",
+                answer: "Kleśa signifie ce qui afflige, tourmente, cause souffrance. Ces cinq états colorent (kliṣṭa) la perception et génèrent duḥkha (souffrance). Ils ne sont pas de simples erreurs intellectuelles mais des forces qui nous enchaînent au cycle de la souffrance.",
+                level: "medium",
+                hint: "Tourment actif",
+                qnum: "QII03m1"
+            },
+            {
+                question: "Comment ces cinq kleśas sont-ils liés entre eux ?",
+                answer: "Ils forment une chaîne causale qu'on détaillera dans les sutras suivants : avidyā (ignorance) est la racine, asmitā (ego) en découle, rāga et dveṣa (attraction/répulsion) naissent de l'ego, et abhiniveśa (peur de mourir) résulte de l'attachement à l'existence individuelle.",
+                level: "medium",
+                hint: "Cascade causale",
+                qnum: "QII03m2"
+            },
+            {
+                question: "Analysez pourquoi Patañjali liste cinq kleśas et non quatre ou six",
+                answer: "Cette liste de cinq n'est pas arbitraire : avidyā est la racine (niveau cognitif), asmitā est l'identification erronée (niveau ontologique), rāga et dveṣa sont les deux polarités de l'expérience affective (attraction/répulsion), abhiniveśa est l'instinct de survie (niveau biologique). Ces cinq couvrent tous les niveaux de l'être conditionné : connaissance, identité, émotion, survie. Aucun niveau n'est omis.",
+                level: "advanced",
+                hint: "Complétude structurelle",
+                qnum: "QII03a1"
+            },
+            {
+                question: "Comparez les kleśas du Yoga aux trois poisons (trivisa) du bouddhisme",
+                answer: "Le bouddhisme identifie trois poisons : moha (ignorance), rāga (avidité), dveṣa (aversion). Le Yoga en liste cinq mais la structure est similaire : avidyā = moha (ignorance racine), rāga/dveṣa sont identiques dans les deux systèmes. Le Yoga ajoute asmitā (ego) et abhiniveśa (peur de mourir) pour une cartographie plus détaillée. Les deux systèmes placent l'ignorance à la racine de la souffrance.",
+                level: "advanced",
+                hint: "Convergence indo-bouddhique",
+                qnum: "QII03a2"
+            }
+        ]
+    },
+    
+    // ▼ SUTRA II.04
+    {
+        number: "II.04",
+        icon: "🌱",
+        text: "L'ignorance de la réalité est la source des autres causes de souffrance, qu'elles soient développées ou en sommeil.",
+        mnemonic: "Avidyā-Racine",
+        questions: [
+            {
+                question: "Quelle est la racine de toutes les afflictions ?",
+                answer: "L'ignorance (avidyā) est le terreau (kṣetram) des autres kleśas",
+                level: "basic",
+                hint: "Ignorance fondamentale",
+                qnum: "QII04"
+            },
+            {
+                question: "Quels sont les quatre états possibles des kleśas ?",
+                answer: "Dormant (prasupta), atténué (tanu), interrompu (vicchinna), pleinement actif (udāra). Comme des graines qui peuvent être en terre, germées, coupées ou en pleine croissance.",
+                level: "medium",
+                hint: "Quatre phases",
+                qnum: "QII04m1"
+            },
+            {
+                question: "Pourquoi avidyā est-elle appelée 'terreau' (kṣetram) et non 'cause' (kāraṇa) ?",
+                answer: "Kṣetram (champ, terreau) suggère que avidyā n'est pas cause mécanique mais condition de possibilité. Comme un champ permet aux graines de pousser, avidyā permet aux autres kleśas d'exister. Sans elle, les autres afflictions n'auraient pas de support. C'est plus subtil qu'une simple causalité linéaire.",
+                level: "medium",
+                hint: "Métaphore agricole",
+                qnum: "QII04m2"
+            },
+            {
+                question: "Développez la notion d'avidyā comme méconnaissance ontologique plutôt qu'erreur intellectuelle",
+                answer: "Avidyā n'est pas ignorance factuelle (ne pas savoir que Paris est en France) mais méconnaissance de la nature du réel : prendre l'impermanent pour permanent (anitya/nitya), l'impur pour pur (aśuci/śuci), la souffrance pour bonheur (duḥkha/sukha), le non-soi pour soi (anātman/ātman). C'est inversion des valeurs au niveau le plus fondamental, avant toute connaissance particulière. Aucune accumulation de savoirs ne peut la corriger car elle précède et conditionne toute acquisition de connaissance.",
+                level: "advanced",
+                hint: "Inversion primordiale",
+                qnum: "QII04a1"
+            },
+            {
+                question: "Analysez les implications pratiques des quatre états des kleśas pour la sādhana",
+                answer: "Prasupta (dormant) : kleśas latents, danger de réveil si conditions favorables. Tanu (atténué) : affaiblis par la pratique mais pas éradiqués. Vicchinna (interrompu) : temporairement suspendus (en samādhi) mais réapparaissent après. Udāra (actif) : manifestés, ils causent souffrance visible. Comprendre ces états évite deux erreurs : croire qu'un kleśa est détruit alors qu'il est dormant, ou désespérer face à sa réactivation. La pratique vise d'abord udāra→vicchinna→tanu, puis l'éradication finale (prasamkhyāna).",
+                level: "advanced",
+                hint: "Stratégie progressive",
+                qnum: "QII04a2"
+            }
+        ]
+    },
+    
+    // ▼ SUTRA II.05
+    {
+        number: "II.05",
+        icon: "🔄",
+        text: "L'ignorance de la réalité, c'est prendre l'impermanent, l'impur, le malheur, ce qui n'est pas le Soi, pour le permanent, le pur, le bonheur, le Soi.",
+        mnemonic: "4-Inversions",
+        questions: [
+            {
+                question: "Quelles sont les quatre inversions qui définissent avidyā ?",
+                answer: "Prendre l'impermanent pour permanent, l'impur pour pur, la souffrance pour bonheur, le non-soi pour le Soi",
+                level: "basic",
+                hint: "Quatre confusions",
+                qnum: "QII05"
+            },
+            {
+                question: "Donnez un exemple concret de chaque inversion",
+                answer: "Impermanent/permanent : croire que le corps ou les relations dureront toujours. Impur/pur : idéaliser ce qui est conditionné. Souffrance/bonheur : chercher le plaisir dans ce qui génère attachement. Non-soi/Soi : s'identifier au corps, mental, rôles sociaux plutôt qu'à la conscience pure.",
+                level: "medium",
+                hint: "Applications quotidiennes",
+                qnum: "QII05m1"
+            },
+            {
+                question: "Pourquoi ces inversions sont-elles si difficiles à détecter ?",
+                answer: "Parce qu'elles sont pré-réflexives : nous agissons comme si le corps était permanent AVANT de le penser explicitement. Ces inversions sont structurelles, pas accidentelles. Elles constituent notre mode d'être habituel au monde. Les corriger demande plus qu'un effort intellectuel : une transformation de la perception elle-même.",
+                level: "medium",
+                hint: "Niveau pré-conceptuel",
+                qnum: "QII05m2"
+            },
+            {
+                question: "Analysez le lien entre la quatrième inversion (anātman/ātman) et les trois premières",
+                answer: "Les trois premières inversions (impermanent/permanent, impur/pur, souffrance/bonheur) découlent de la quatrième (non-soi/Soi). Si on s'identifie au corps-mental (anātman pour ātman), on DOIT croire qu'il est permanent (sinon panique existentielle), pur (pour justifier l'attachement), source de bonheur (pour légitimer sa poursuite). Les trois premières sont conséquences psychologiques de l'erreur ontologique fondamentale : prendre le changeant (prakṛti) pour le témoin immuable (puruṣa).",
+                level: "advanced",
+                hint: "Hiérarchie des inversions",
+                qnum: "QII05a1"
+            },
+            {
+                question: "Comparez avidyā (Yoga) et māyā (Advaita Vedānta) : même concept ou approches différentes ?",
+                answer: "Similitudes : les deux désignent l'illusion fondamentale qui voile le réel. Différences : avidyā (Yoga) est erreur cognitive corrigible par viveka (discrimination), tandis que māyā (Advaita) est pouvoir cosmique de manifestation, plus ontologique qu'épistémologique. Avidyā affecte le sujet connaissant, māyā est inhérente au processus de manifestation lui-même. Le Yoga est plus optimiste : corriger avidyā libère. L'Advaita est plus radical : māyā ne se corrige pas, elle se transcende par reconnaissance que seul Brahman est réel.",
+                level: "advanced",
+                hint: "Yoga vs Vedānta",
+                qnum: "QII05a2"
+            }
+        ]
+    },
+    
+    // ▼ SUTRA II.06
+    {
+        number: "II.06",
+        icon: "👁️",
+        text: "Le sentiment de l'ego vient du fait que l'on identifie le spectateur et le spectacle.",
+        mnemonic: "Voyant-Vu-Confusion",
+        questions: [
+            {
+                question: "Qu'est-ce qu'asmitā selon ce sutra ?",
+                answer: "L'identification du pouvoir de voir (puruṣa/conscience) avec l'instrument de vision (buddhi/mental)",
+                level: "basic",
+                hint: "Confusion sujet-objet",
+                qnum: "QII06"
+            },
+            {
+                question: "Quelle est la différence entre draṣṭṛ (voyant) et darśana (vision) ?",
+                answer: "Draṣṭṛ (le voyant, puruṣa) est conscience pure, immuable, témoin. Darśana (la vision, buddhi) est l'acte de voir, qui implique l'instrument mental. Asmitā confond les deux : on croit que la conscience EST le mental plutôt qu'elle utilise le mental comme instrument.",
+                level: "medium",
+                hint: "Sujet vs faculté",
+                qnum: "QII06m1"
+            },
+            {
+                question: "Comment asmitā se manifeste-t-il dans l'expérience quotidienne ?",
+                answer: "Quand je dis 'je suis triste', j'identifie le voyant (conscience) à l'état vu (tristesse). Quand je dis 'je suis ce corps', j'identifie le témoin à l'objet témoigné. Asmitā est le 'je' qui se prend pour ses contenus de conscience (pensées, émotions, corps) au lieu de reconnaître qu'il est pure présence consciente distincte de ces contenus.",
+                level: "medium",
+                hint: "Je suis vs J'ai",
+                qnum: "QII06m2"
+            },
+            {
+                question: "Développez pourquoi asmitā est considéré comme plus subtil qu'avidyā tout en en découlant",
+                answer: "Paradoxe apparent : avidyā (II.04) est racine, donc plus fondamental ; mais asmitā est plus subtil car plus proche de la libération. Avidyā est ignorance diffuse (ne pas savoir ce qu'est le Soi). Asmitā est erreur précise : savoir qu'il y a un Soi mais le chercher au mauvais endroit (dans le mental). C'est l'avant-dernière étape avant kaivalya : on a compris qu'il faut un sujet permanent, mais on le confond encore avec buddhi. Asmitā est l'ignorance du connaisseur, la dernière forteresse de l'ego.",
+                level: "advanced",
+                hint: "Proximité dangereuse",
+                qnum: "QII06a1"
+            },
+            {
+                question: "Analysez le lien entre asmitā (Yoga) et ahaṃkāra (Sāṃkhya) : synonymes ou distincts ?",
+                answer: "Dans le Sāṃkhya, ahaṃkāra (fabricateur du 'je') est tattva n°3, principe cosmique objectif qui individualise l'expérience. Asmitā dans le Yoga est plus restreint : erreur subjective d'identification. Mais leur fonction est similaire : tous deux créent le sens du 'je' séparé. Différence : ahaṃkāra est neutre (il FAUT un principe d'individuation), asmitā est péjoratif (c'est une ERREUR). Le Yoga psychologise ce que le Sāṃkhya ontologise. Corriger asmitā ne détruit pas ahaṃkāra mais clarifie son statut : outil de prakṛti, pas nature de puruṣa.",
+                level: "advanced",
+                hint: "Sāṃkhya cosmique vs Yoga psychologique",
+                qnum: "QII06a2"
+            }
+        ]
+    },
+    
+    // ▼ SUTRA II.07
+    {
+        number: "II.07",
+        icon: "💖",
+        text: "Le désir de prendre est lié à la mémoire du plaisir.",
+        mnemonic: "Plaisir-Attachement",
+        questions: [
+            {
+                question: "Qu'est-ce que rāga selon ce sutra ?",
+                answer: "L'attachement qui accompagne (anuśayī) le plaisir (sukha)",
+                level: "basic",
+                hint: "Suite du plaisir",
+                qnum: "QII07"
+            },
+            {
+                question: "Quelle est la différence entre sukha (plaisir) et rāga (attachement) ?",
+                answer: "Sukha est l'expérience agréable elle-même (neutre). Rāga est le mouvement mental qui suit : désir de répéter, peur de perdre, identification au plaisir. On peut avoir sukha sans rāga (plaisir vécu sans attachement), mais rāga naît typiquement de l'expérience répétée de sukha.",
+                level: "medium",
+                hint: "Expérience vs réaction",
+                qnum: "QII07m1"
+            },
+            {
+                question: "Pourquoi le terme anuśayī (qui repose sur, qui accompagne) est-il significatif ?",
+                answer: "Anuśayī indique que rāga n'est pas identique au plaisir mais son ombre, sa trace résiduelle (saṃskāra). Après l'expérience plaisante, il reste une empreinte qui pousse à la rechercher à nouveau. C'est ce résidu, cette mémoire désirante, qui est rāga. Le plaisir passe, rāga demeure et conditionne les comportements futurs.",
+                level: "medium",
+                hint: "Trace mémorielle",
+                qnum: "QII07m2"
+            },
+            {
+                question: "Analysez pourquoi Patañjali ne condamne pas sukha (plaisir) mais rāga (attachement)",
+                answer: "Le Yoga n'est pas ascétisme nihiliste. Sukha en soi n'est pas problème : c'est une modalité de l'expérience, ni bonne ni mauvaise. Le problème est rāga : l'identification au plaisir, la dépendance, le besoin compulsif de répétition. Cette distinction permet une voie médiane : ni hédonisme (poursuite de sukha) ni mortification (rejet de sukha), mais équanimité (sukha vécu sans rāga). Le yogi peut éprouver du plaisir mais n'en devient pas esclave.",
+                level: "advanced",
+                hint: "Non-rejet du plaisir",
+                qnum: "QII07a1"
+            },
+            {
+                question: "Développez le mécanisme par lequel rāga se transforme en addiction",
+                answer: "Cycle : sukha → saṃskāra (empreinte) → rāga (désir de répétition) → recherche active → nouveau sukha mais atténué (tolérance) → saṃskāra renforcé → rāga intensifié. Chaque répétition grave plus profondément le sillon neural. Paradoxe : plus on répète, moins le plaisir satisfait (diminishing returns), mais plus le besoin s'intensifie. Rāga devient autonome, se nourrissant de sa propre frustration. La libération exige de briser le cycle au niveau de saṃskāra (par pratīprasava, YS II.10) plutôt que de simplement résister au désir manifeste.",
+                level: "advanced",
+                hint: "Spirale addictive",
+                qnum: "QII07a2"
+            }
+        ]
+    },
+    
+    // ▼ SUTRA II.08
+    {
+        number: "II.08",
+        icon: "😤",
+        text: "Le refus est lié à la peur de souffrir.",
+        mnemonic: "Souffrance-Aversion",
+        questions: [
+            {
+                question: "Qu'est-ce que dveṣa selon ce sutra ?",
+                answer: "L'aversion qui accompagne (anuśayī) la souffrance (duḥkha)",
+                level: "basic",
+                hint: "Suite de la souffrance",
+                qnum: "QII08"
+            },
+            {
+                question: "Pourquoi rāga et dveṣa sont-ils traités dans deux sutras séparés alors qu'ils sont symétriques ?",
+                answer: "Leur symétrie est pédagogique : rāga suit sukha (attraction vers le plaisant), dveṣa suit duḥkha (répulsion du déplaisant). Mais les traiter séparément souligne qu'ils ne sont pas un seul kleśa à deux faces, mais deux dynamiques distinctes qui nécessitent des remèdes spécifiques. Rāga se dissout par non-identification au plaisir, dveṣa par acceptation de l'inévitable.",
+                level: "medium",
+                hint: "Deux remèdes distincts",
+                qnum: "QII08m1"
+            },
+            {
+                question: "Comment dveṣa diffère-t-il de la simple réaction de protection face au danger ?",
+                answer: "Réaction de protection (éviter le feu) est intelligence adaptative, pas kleśa. Dveṣa est la charge émotionnelle résiduelle : haine, ressentiment, obsession d'évitement qui persiste après la menace. C'est quand l'expérience passée de duḥkha crée une aversion généralisée, disproportionnée, qui contamine le présent. Dveṣa est mémoire de souffrance devenue structure mentale.",
+                level: "medium",
+                hint: "Réaction vs réactivité",
+                qnum: "QII08m2"
+            },
+            {
+                question: "Analysez pourquoi dveṣa est souvent plus puissant et durable que rāga",
+                answer: "Biais de négativité : le cerveau encode plus fortement les expériences négatives (survie). Une brûlure laisse trace plus profonde qu'un plaisir équivalent. Dveṣa a donc tendance à être plus tenace que rāga. De plus, dveṣa s'auto-entretient : l'aversion crée tension, la tension est elle-même déplaisante, ce qui renforce dveṣa. C'est pourquoi certaines phobies ou ressentiments persistent des décennies après l'événement déclencheur. Le travail sur dveṣa est souvent plus exigeant que sur rāga.",
+                level: "advanced",
+                hint: "Négativité gravée",
+                qnum: "QII08a1"
+            },
+            {
+                question: "Développez la relation dialectique entre rāga et dveṣa : sont-ils vraiment opposés ou deux faces d'une même dynamique ?",
+                answer: "Apparemment opposés (attraction vs répulsion), mais fondamentalement liés : tous deux naissent d'asmitā (ego séparé qui juge 'pour moi' vs 'contre moi'). Rāga pour X implique souvent dveṣa pour non-X (aimer le silence → détester le bruit). Ils se renforcent mutuellement : plus l'attachement au plaisir, plus violente la réaction face à son absence. La libération n'est ni rāga ni dveṣa, mais vairāgya (non-colorature) : équanimité où sukha et duḥkha sont vus comme fluctuations de prakṛti ne concernant pas puruṣa.",
+                level: "advanced",
+                hint: "Pôles d'une même ignorance",
+                qnum: "QII08a2"
+            }
+        ]
+    },
+    
+    // ▼ SUTRA II.09
+    {
+        number: "II.09",
+        icon: "💀",
+        text: "L'instinct de conservation, lié au sentiment que l'on a de son importance, est enraciné en nous, même chez l'érudit.",
+        mnemonic: "Instinct-Survie",
+        questions: [
+            {
+                question: "Qu'est-ce qu'abhiniveśa ?",
+                answer: "La peur de la mort, l'attachement à la vie, l'instinct de survie qui s'impose à tous",
+                level: "basic",
+                hint: "Instinct universel",
+                qnum: "QII09"
+            },
+            {
+                question: "Que signifie 'même chez le sage' (viduso'pi) ?",
+                answer: "Abhiniveśa n'est pas seulement erreur intellectuelle mais instinct biologique. Même celui qui SAIT intellectuellement qu'il n'est pas le corps ressent viscéralement la peur de mourir. C'est le kleśa le plus archaïque, enraciné au niveau cellulaire, pas seulement mental.",
+                level: "medium",
+                hint: "Au-delà de l'intellect",
+                qnum: "QII09m1"
+            },
+            {
+                question: "Pourquoi abhiniveśa 'coule par soi-même' (svarasavāhī) ?",
+                answer: "Svarasavāhī : qui coule de son propre élan, spontané, non appris. Contrairement à rāga/dveṣa qui se développent par expérience, abhiniveśa est inné. Le nouveau-né a peur de tomber sans jamais avoir appris qu'il peut mourir. C'est trace de vies antérieures (karma passé) selon le Yoga, ou instinct évolutif selon la biologie moderne.",
+                level: "medium",
+                hint: "Non-appris, inné",
+                qnum: "QII09m2"
+            },
+            {
+                question: "Analysez le paradoxe : comment peut-on avoir peur de mourir si on n'a jamais fait l'expérience de la mort ?",
+                answer: "Double réponse. Yogique : abhiniveśa prouve la réincarnation. Si c'était instinct purement biologique, il devrait disparaître quand on SAIT qu'on n'est pas le corps. Mais il persiste 'même chez le sage' → trace de morts antérieures (pūrva-janma-smṛti-saṃskāra). Occidentale : instinct façonné par sélection naturelle, codé génétiquement. Les deux convergent : abhiniveśa transcende l'individu présent, vient d'un 'passé' (vies antérieures ou évolution) qui conditionne le présent. C'est le kleśa le plus transpersonnel.",
+                level: "advanced",
+                hint: "Mémoire trans-individuelle",
+                qnum: "QII09a1"
+            },
+            {
+                question: "Développez la relation entre abhiniveśa et asmitā : la peur de mourir présuppose-t-elle le sens de l'ego ?",
+                answer: "Oui : sans asmitā (identification à un 'moi' séparé), pas d'abhiniveśa. Si je suis conscience pure (puruṣa), je ne peux mourir car la conscience ne naît ni ne meurt. La peur de mourir présuppose donc qu'il y a quelque chose À perdre : ce corps-mental avec lequel je me suis identifié. Abhiniveśa est conséquence ultime d'asmitā : avoir cru qu'on était cette forme individuelle, on craint sa dissolution. Mais paradoxe : abhiniveśa est plus primitif (présent chez l'animal) qu'asmitā (qui requiert buddhi développé). Solution : deux niveaux d'abhiniveśa : instinct biologique (partagé avec animaux) et angoisse existentielle (propre à l'humain conscient de sa mortalité).",
+                level: "advanced",
+                hint: "Instinct vs angoisse",
+                qnum: "QII09a2"
+            }
+        ]
+    },
+    
+    // ▼ SUTRA II.10
+    {
+        number: "II.10",
+        icon: "🌊",
+        text: "Quand ces causes de souffrance sont légères, on peut les éliminer en les prenant à contre-courant.",
+        mnemonic: "Retour-Source",
+        questions: [
+            {
+                question: "Comment surmonter les kleśas subtils ?",
+                answer: "Par pratiprasava : la résolution inverse, le retour à la source",
+                level: "basic",
+                hint: "Chemin inverse",
+                qnum: "QII10"
+            },
+            {
+                question: "Que signifie pratiprasava littéralement ?",
+                answer: "Prati (contre, inverse) + prasava (naissance, émergence). C'est dissoudre les kleśas en remontant leur processus de formation, comme dérouler un film à l'envers jusqu'au frame originel.",
+                level: "medium",
+                hint: "Naissance inversée",
+                qnum: "QII10m1"
+            },
+            {
+                question: "Quelle est la différence entre kleśas 'subtils' (sūkṣma) ici et 'grossiers' ailleurs ?",
+                answer: "Grossiers (sthūla, udāra) : kleśas manifestes, actifs, causant souffrance visible. Subtils (sūkṣma) : kleśas atténués (tanu) ou dormants (prasupta), présents comme tendances latentes (vāsanās) mais non actifs. Pratiprasava vise ces kleśas subtils que la simple pratique ordinaire ne dissout pas.",
+                level: "medium",
+                hint: "Latent vs manifeste",
+                qnum: "QII10m2"
+            },
+            {
+                question: "Développez la méthode du pratiprasava : comment 'remonter à la source' concrètement ?",
+                answer: "Identifier la chaîne causale : dveṣa → expérience passée de duḥkha → asmitā (identification) → avidyā. Au lieu de combattre dveṣa directement, remonter à sa source : reconnaître que 'je' ne suis pas celui qui a souffert (dissoudre asmitā), puis que la distinction souffrance/plaisir est projection de l'ignorance (dissoudre avidyā). C'est thérapie causale, pas symptomatique. Exemple : phobie des chiens. Méthode superficielle : exposition graduelle (désensibilisation). Pratiprasava : reconnaître que le 'moi' qui a peur n'est pas le témoin immuable → la peur perd son support ontologique.",
+                level: "advanced",
+                hint: "Chirurgie causale",
+                qnum: "QII10a1"
+            },
+            {
+                question: "Analysez pourquoi pratiprasava est nécessaire en plus de dhyāna (méditation) pour éradiquer les kleśas",
+                answer: "Dhyāna (YS II.11) arrête les kleśas grossiers en les rendant subtils (udāra → tanu). Mais même atténués, ils persistent comme graines (bīja) qui germeront dans des conditions favorables. Pratiprasava va plus loin : il brûle les graines elles-mêmes (dagdha-bīja). Métaphore : dhyāna coupe les mauvaises herbes, pratiprasava arrache les racines. Sans pratiprasava, le yogi risque la rechute (même après des années de pratique) car les saṃskāras profonds restent intacts. C'est pourquoi kaivalya (libération finale) requiert les deux : dhyāna pour apaiser, pratiprasava pour éradiquer.",
+                level: "advanced",
+                hint: "Apaisement vs éradication",
+                qnum: "QII10a2"
+            }
+        ]
+    },
+    
+    // ▼ SUTRA II.11
+    {
+        number: "II.11",
+        icon: "🧘",
+        text: "Les perturbations mentales qu'elles entraînent peuvent être éliminées par la méditation.",
+        mnemonic: "Dhyāna-Apaise",
+        questions: [
+            {
+                question: "Comment surmonter les vṛttis des kleśas ?",
+                answer: "Par dhyāna (méditation)",
+                level: "basic",
+                hint: "Méditation concentrée",
+                qnum: "QII11"
+            },
+            {
+                question: "Quelle est la différence entre kleśas (II.10) et leurs vṛttis (II.11) ?",
+                answer: "Kleśas sont les afflictions elles-mêmes (états latents, graines). Vṛttis sont leurs manifestations actives (modifications mentales, vagues). II.10 traite les kleśas subtils (graines) par pratiprasava. II.11 traite leurs vṛttis (manifestations) par dhyāna. Deux niveaux, deux remèdes complémentaires.",
+                level: "medium",
+                hint: "Graine vs manifestation",
+                qnum: "QII11m1"
+            },
+            {
+                question: "Pourquoi dhyāna spécifiquement, et non abhyāsa ou vairāgya (YS I.12) ?",
+                answer: "Abhyāsa et vairāgya (pratique persistante et détachement) étaient la méthode du chapitre I pour toutes les vṛttis. Ici, dhyāna est spécifique aux vṛttis nées des kleśas. Dhyāna (absorption méditative) a pouvoir particulier : il remplace les vṛttis-kleśas par vṛtti unique et stabilisée (ekāgratā). Comme remplacer eau agitée par eau calme : les vagues ne sont pas supprimées mais unifiées.",
+                level: "medium",
+                hint: "Remplacement, pas suppression",
+                qnum: "QII11m2"
+            },
+            {
+                question: "Développez le mécanisme par lequel dhyāna neutralise les vṛttis des kleśas",
+                answer: "Les kleśas produisent vṛttis multiples, conflictuelles, colorées (kliṣṭa) : désir ici, aversion là, identification partout. Dhyāna impose ekāgratā : focalisation sur un seul objet (īśvara, souffle, mantra). Cette concentration exclusive affame les autres vṛttis : privées d'attention, elles s'affaiblissent (principe : what you feed grows, what you starve dies). Progressivement, même la vṛtti de dhyāna devient si subtile qu'elle cesse (nirodha). Ce n'est pas combat frontal mais stratégie de substitution : remplacer le multiple agité par l'un stable.",
+                level: "advanced",
+                hint: "Affamer par non-attention",
+                qnum: "QII11a1"
+            },
+            {
+                question: "Analysez la séquence II.10 (pratiprasava) → II.11 (dhyāna) : pourquoi cet ordre ?",
+                answer: "Paradoxe apparent : II.10 traite kleśas subtils, II.11 leurs vṛttis grossières. On attendrait l'inverse (d'abord grossier puis subtil). Résolution : il y a deux TYPES de pratique. Pour débutant : dhyāna d'abord (calmer vṛttis actives), puis pratiprasava (dissoudre graines). Mais Patañjali décrit l'ordre LOGIQUE, pas chronologique : ontologiquement, les kleśas (causes) précèdent leurs vṛttis (effets), donc leur traitement est décrit dans cet ordre. En pratique, on alterne : dhyāna pour apaiser quand agité, pratiprasava pour extraire racines dans les moments de clarté. Les deux se renforcent mutuellement.",
+                level: "advanced",
+                hint: "Ordre logique vs chronologique",
+                qnum: "QII11a2"
+            }
+        ]
+    },
+    
+    // ▼ SUTRA II.12
+    {
+        number: "II.12",
+        icon: "🌳",
+        text: "Au cours de naissances successives, on expérimente la loi du Karma, qui trouve ses racines dans nos afflictions.",
+        mnemonic: "Karma-Racine-Kleśa",
+        questions: [
+            {
+                question: "Qu'est-ce que le karmāśaya ?",
+                answer: "Le réservoir (āśaya) des actions (karma), la somme des empreintes accumulées qui détermineront les vies futures",
+                level: "basic",
+                hint: "Réservoir karmique",
+                qnum: "QII12"
+            },
+            {
+                question: "Quelle est la relation entre kleśas et karmāśaya ?",
+                answer: "Les kleśas (afflictions) sont la racine (mūla) du karmāśaya. Sans kleśas, les actions ne créent pas d'empreintes karmiques. C'est l'ignorance, l'ego, l'attachement qui 'colorent' les actes et les rendent porteurs de fruits (vipāka).",
+                level: "medium",
+                hint: "Kleśas colorent le karma",
+                qnum: "QII12m1"
+            },
+            {
+                question: "Que signifie que le karma se manifeste 'dans cette vie ou future' ?",
+                answer: "Certains karmas mûrissent rapidement (dṛṣṭa, visible ici-maintenant). D'autres restent latents et ne porteront fruit que dans une vie future (adṛṣṭa) quand les conditions seront propices. Le karmāśaya est réservoir transgénérationnel, pas limité à une existence.",
+                level: "medium",
+                hint: "Maturation différée",
+                qnum: "QII12m2"
+            },
+            {
+                question: "Développez pourquoi le Yoga affirme que seules les actions 'enracinées dans les kleśas' créent du karma contraignant",
+                answer: "Action + kleśa = karma liant. Action sans kleśa = karma non-liant (ou absence de karma). Exemple : donner de l'argent par compassion pure (sans ego 'je suis généreux', sans attente de retour) ne crée pas dette karmique. Même acte fait par orgueil ou pour être aimé crée karma. Ce n'est pas l'acte objectif mais l'intention subjective colorée par kleśas qui lie. Le jīvanmukta (libéré vivant) agit sans créer karma car ses actes ne sont plus enracinés dans avidyā/asmitā. Il fait sans être faiseur (cf. Bhagavad Gītā : naiṣkarmya).",
+                level: "advanced",
+                hint: "Intention colore l'acte",
+                qnum: "QII12a1"
+            },
+            {
+                question: "Analysez le lien entre ce sutra et la doctrine des trois guṇas du Sāṃkhya",
+                answer: "Karmāśaya est réservoir de saṃskāras qui déterminent quel mélange de sattva/rajas/tamas dominera dans la prochaine vie (jāti, āyus, bhoga du sutra suivant). Kleśas poussent vers rajas (désir, agitation) et tamas (ignorance, inertie). Sans kleśas, les actes seraient purement sattviques (clairs, harmonieux) et ne créeraient pas attachement. Le Yoga ne vise pas à produire actions sattviques (encore dans les guṇas) mais à transcender toute action conditionnée. Kaivalya est au-delà des trois guṇas : puruṣa pur, témoin qui n'agit pas même quand le corps-mental agit.",
+                level: "advanced",
+                hint: "Guṇas et karma",
+                qnum: "QII12a2"
+            }
+        ]
+    },
+    
+    // ▼ SUTRA II.13
+    {
+        number: "II.13",
+        icon: "🎭",
+        text: "Tant que la racine est là, le développement des Kléshas se fait au cours de naissances, de vies et d'expériences différentes.",
+        mnemonic: "3-Fruits-Karma",
+        questions: [
+            {
+                question: "Quels sont les trois fruits (vipāka) du karma ?",
+                answer: "Jāti (naissance, espèce), āyus (durée de vie), bhoga (expériences vécues)",
+                level: "basic",
+                hint: "Naissance-Durée-Expérience",
+                qnum: "QII13"
+            },
+            {
+                question: "Que détermine jāti (type de naissance) ?",
+                answer: "Jāti détermine l'espèce (humain, animal, deva), la famille, la caste, les aptitudes innées. C'est le 'package' de départ : corps, mental, tendances héritées du karma passé. On naît prince ou mendiant, génie ou attardé, selon le karmāśaya.",
+                level: "medium",
+                hint: "Conditions de départ",
+                qnum: "QII13m1"
+            },
+            {
+                question: "Comment āyus (durée de vie) est-il déterminé karmiquement ?",
+                answer: "Āyus n'est pas aléatoire mais fruit du karma. Mort prématurée ou longévité exceptionnelle reflètent des actions passées. Cependant, āyus peut être modifié par actions présentes (karma nouveau) : ascèse intense peut rallonger, violence peut raccourcir. C'est karma 'fixé mais modulable'.",
+                level: "medium",
+                hint: "Durée pré-déterminée modulable",
+                qnum: "QII13m2"
+            },
+            {
+                question: "Analysez pourquoi bhoga (expériences) est fruit karmique alors qu'on semble avoir libre arbitre",
+                answer: "Paradoxe du déterminisme karmique vs libre arbitre. Résolution : bhoga désigne le cadre général des expériences (plaisir/douleur, succès/échec), pas chaque détail. On hérite d'une 'carte karmique' qui prédispose à certaines expériences, mais on garde liberté de RÉPONSE. Même bhoga : deux personnes vivent même échec, l'une s'effondre (créant nouveau karma négatif), l'autre apprend (transformant karma en sagesse). Bhoga est donné, la réaction est libre. C'est cette liberté de réponse qui permet de sortir du cycle.",
+                level: "advanced",
+                hint: "Cadre fixé, réponse libre",
+                qnum: "QII13a1"
+            },
+            {
+                question: "Développez l'implication sotériologique : comment briser la chaîne kleśa → karmāśaya → vipāka ?",
+                answer: "Chaîne : kleśas → actions colorées → karmāśaya → renaissance → nouveau jāti/āyus/bhoga → nouvelles occasions de kleśas → cycle recommence. Point de rupture : dissoudre les kleśas (II.10-11). Si plus de kleśas, les actions ne créent plus karmāśaya (actes sans attachement, cf. Gītā). Même si karmāśaya passé existe encore (prārabdha-karma : karma déjà enclenché), il s'épuise sans en créer nouveau (sañcita-karma épuisé, āgāmin-karma non créé). À la mort, plus de renaissance car plus de graines karmiques à germer. C'est kaivalya : liberation while living (jīvanmukti), puis liberation without body (videhamukti).",
+                level: "advanced",
+                hint: "Rupture de la chaîne",
+                qnum: "QII13a2"
+            }
+        ]
+    },
+    
+    // ▼ SUTRA II.14
+    {
+        number: "II.14",
+        icon: "🌈",
+        text: "Selon qu'elles sont justes ou non, ces expériences produisent la joie ou la souffrance.",
+        mnemonic: "Joie-Souffrance-Causes",
+        questions: [
+            {
+                question: "De quoi dépend que les fruits karmiques soient joie ou souffrance ?",
+                answer: "De la nature de leurs causes : actions vertueuses (puṇya) produisent joie (hlāda), actions non vertueuses (pāpa) produisent souffrance (paritāpa)",
+                level: "basic",
+                hint: "Vertu vs vice",
+                qnum: "QII14"
+            },
+            {
+                question: "Que signifient hlāda (joie) et paritāpa (souffrance) dans ce contexte ?",
+                answer: "Hlāda : plaisir, satisfaction, bien-être résultant d'actions vertueuses passées. Paritāpa : souffrance, tourment, malheur résultant d'actions non vertueuses. Ce ne sont pas états psychologiques arbitraires mais conséquences logiques des actes selon la loi morale cosmique (dharma).",
+                level: "medium",
+                hint: "Rétribution morale",
+                qnum: "QII14m1"
+            },
+            {
+                question: "Comment le Yoga justifie-t-il moralement cette loi de rétribution karmique ?",
+                answer: "Ce n'est pas récompense/punition par un juge externe mais conséquence naturelle. Actions vertueuses = actions harmonieuses avec dharma (ordre cosmique) → produisent harmonie (joie). Actions non-vertueuses = disharmonie → produisent désordre (souffrance). Comme santé suit hygiène, maladie suit insalubrité. C'est loi impersonnelle, pas moralisme. Le karma n'est pas vengeur mais pédagogue : il enseigne par conséquence.",
+                level: "medium",
+                hint: "Loi naturelle, pas jugement",
+                qnum: "QII14m2"
+            },
+            {
+                question: "Analysez le paradoxe : si actions vertueuses produisent joie, pourquoi le yogi doit-il transcender vertu ET vice ?",
+                answer: "Piège subtil : chercher la vertu pour obtenir joie, c'est encore rāga (attachement au résultat plaisant). Même puṇya (mérite vertueux) lie si on y est attaché. La libération exige de transcender le couple puṇya/pāpa, non pas en devenant amoral mais en agissant sans attachement aux fruits. Le jīvanmukta fait spontanément le bien mais sans orgueil ('je suis vertueux') ni attente de récompense. C'est naiṣkarmya (action sans karma) : agir dans le dharma mais sans créer dette karmique. Vertu devient naturelle, non calculée.",
+                level: "advanced",
+                hint: "Au-delà de vertu et vice",
+                qnum: "QII14a1"
+            },
+            {
+                question: "Développez la critique du Yoga envers l'éthique conséquentialiste : pourquoi l'intention compte plus que le résultat ?",
+                answer: "Conséquentialisme : acte jugé par ses conséquences objectives. Yoga : acte jugé par intention subjective colorée ou non par kleśas. Problème du conséquentialisme : mêmes conséquences peuvent résulter d'intentions opposées (donner par amour vs par orgueil). Pour le Yoga, seule l'intention enracinée dans kleśas crée karma liant. Résultat objectif est secondaire. Cela explique pourquoi le sage peut faire actes 'immoraux' objectivement (Kṛṣṇa tuant, Bouddha mentant pour sauver) sans créer karma : pas de kleśas = pas de coloration = pas de dette. C'est éthique dispositionnelle (vertu de l'agent) plutôt qu'éthique des conséquences.",
+                level: "advanced",
+                hint: "Intention vs conséquence",
+                qnum: "QII14a2"
+            }
+        ]
+    },
+    
+    // ▼ SUTRA II.15
+    {
+        number: "II.15",
+        icon: "🔥",
+        text: "Pour le sage, tout est douleur, parce que nous sommes soumis aux conflits nés de l'activité des Gunas et à la douleur inhérente au changement, au malaise existentiel, au conditionnement du passé.",
+        mnemonic: "Tout-est-Duḥkha",
+        questions: [
+            {
+                question: "Pourquoi le sage voit-il tout comme souffrance (duḥkha) ?",
+                answer: "En raison de quatre facteurs : transformations continuelles (pariṇāma), anxiété anticipatoire (tāpa), impressions latentes (saṃskāra), et conflit des guṇas",
+                level: "basic",
+                hint: "Quatre causes de duḥkha",
+                qnum: "QII15"
+            },
+            {
+                question: "Que signifie 'pariṇāma-duḥkha' (souffrance du changement) ?",
+                answer: "Tout ce qui naît est voué à se transformer et disparaître. Même le plaisir présent contient souffrance future car il ne durera pas. Le sage qui voit l'impermanence universelle reconnaît que toute joie porte en germe son extinction. C'est première Noble Vérité bouddhiste : tout composé est dukkha.",
+                level: "medium",
+                hint: "Impermanence = souffrance",
+                qnum: "QII15m1"
+            },
+            {
+                question: "Comment 'tāpa-duḥkha' (souffrance de l'anxiété) fonctionne-t-il ?",
+                answer: "Tāpa : chaleur, brûlure de l'anxiété. Même en plein plaisir, l'esprit discriminant (viveka) pressent sa fin, créant anxiété qui gâche le présent. 'Cette joie ne durera pas' → impossibilité de jouir pleinement. C'est souffrance de la conscience réflexive : savoir qu'on sait que ça passera. Les animaux souffrent moins car moins conscients de l'impermanence.",
+                level: "medium",
+                hint: "Anxiété anticipatoire",
+                qnum: "QII15m2"
+            },
+            {
+                question: "Développez 'saṃskāra-duḥkha' : comment les impressions latentes créent-elles souffrance ?",
+                answer: "Saṃskāras (empreintes latentes) sont bombes à retardement. Même si kleśas semblent absents maintenant, leurs traces (vāsanās) restent en arrière-plan, prêtes à ressurgir au moindre déclencheur. Le sage qui a développé viveka VOIT ces saṃskāras tapis dans l'inconscient. C'est comme marcher sur champ de mines : joie présente est minée par conscience des explosions potentielles. Tant que saṃskāras existent, paix complète est impossible. Seul leur éradication totale (nirbīja-samādhi) libère.",
+                level: "advanced",
+                hint: "Mines latentes",
+                qnum: "QII15a1"
+            },
+            {
+                question: "Analysez 'guṇa-vṛtti-virodhāt' : pourquoi le conflit des guṇas est-il source de souffrance ultime ?",
+                answer: "Les trois guṇas (sattva/rajas/tamas) sont en conflit perpétuel pour dominer. Même état sattvique (paix, clarté) est précaire : rajas (agitation) et tamas (torpeur) attendent leur tour. Toute expérience est tiraillement entre ces forces. Le sage voit que même états 'positifs' (sattva dominant) sont encore dans prakṛti (nature matérielle), donc impermanents et sources de souffrance. La vraie libération (kaivalya) est sortie du jeu des guṇas, établissement en puruṣa (pur témoin) qui n'est affecté par aucun guṇa. Ce sutra est diagnostic radical : dans le monde de prakṛti, il n'y a PAS de bonheur durable. Seul puruṣa est ānanda (béatitude), car au-delà du changement.",
+                level: "advanced",
+                hint: "Prison des guṇas",
+                qnum: "QII15a2"
+            }
+        ]
+    }
+	];
+        /* ═══════════════════════════════════════════════════════════════
+           FIN ZONE 4/5 : DONNÉES DES SUTRAS
+           
+           ✅ VÉRIFICATION IMMÉDIATE APRÈS MODIFICATION :
+           
+           1. Ouvrir ce fichier HTML dans navigateur (double-clic)
+           2. Appuyer F12 → Onglet "Console"
+           3. Vérifier : ZÉRO ligne rouge
+           4. Cliquer "📖 Sutras" → Tous sutras s'affichent
+           5. Cliquer "📝 Quiz" → Mode basique → ▶️ → Questions OK
+           
+           Si ERREUR :
+           - Lire le message dans Console
+           - Chercher le numéro de ligne indiqué
+           - Vérifier virgules, guillemets, accolades
+           - Comparer avec le TEMPLATE ci-dessus
+           
+           ════════════════════════════════════════════════════════════ */
+
+        /* ═══════════════════════════════════════════════════════════════
+           ⛔ ZONE 5/5 : LOGIQUE JAVASCRIPT - NE PAS MODIFIER - DÉBUT
+           ═══════════════════════════════════════════════════════════════
+           
+           ⚠️ AVERTISSEMENT CRITIQUE ⚠️
+           
+           Tout le code qui suit gère la logique complète de l'application :
+           - Gestion audio
+           - Navigation entre modes
+           - Système de questions/réponses
+           - Calcul des scores
+           - Tour bonus
+           - Révision
+           - Groupes en mode avancé
+           
+           NE RIEN MODIFIER dans cette zone.
+           
+           Si vous DEVEZ absolument modifier quelque chose ici :
+           1. Créez une SAUVEGARDE COMPLÈTE du fichier d'abord
+           2. Notez EXACTEMENT ce que vous modifiez
+           3. Testez immédiatement après modification
+           
+           ════════════════════════════════════════════════════════════ */
+
+        function validateSutrasData() {
+            let isValid = true;
+            const errors = [];
+            
+            console.log('🔍 Validation des données...');
+            
+            sutrasData.forEach((sutra, index) => {
+                if (!sutra.number || !sutra.icon || !sutra.text || !sutra.mnemonic) {
+                    errors.push(`❌ Sutra ${index + 1}: Champs obligatoires manquants`);
+                    isValid = false;
+                }
+                
+                if (!Array.isArray(sutra.questions) || sutra.questions.length !== 5) {
+                    errors.push(`❌ ${sutra.number}: Doit avoir exactement 5 questions`);
+                    isValid = false;
+                }
+                
+                const levels = sutra.questions.map(q => q.level);
+                const hasBasic = levels.filter(l => l === 'basic').length === 1;
+                const hasMedium = levels.filter(l => l === 'medium').length === 2;
+                const hasAdvanced = levels.filter(l => l === 'advanced').length === 2;
+                
+                if (!hasBasic || !hasMedium || !hasAdvanced) {
+                    errors.push(`❌ ${sutra.number}: Structure incorrecte (doit être 1 basic + 2 medium + 2 advanced)`);
+                    isValid = false;
+                }
+            });
+            
+            if (errors.length > 0) {
+                console.error('Erreurs de validation:', errors);
+            } else {
+                console.log(`✅ Données valides - ${sutrasData.length} sutras, ${sutrasData.length * 5} questions`);
+            }
+            
+            return isValid;
+        }
+
+        function toggleMainAudio() {
+            const q = shuffledQuestions[currentIndex];
+            const button = document.querySelector('.flashcard-question-title .individual-audio-btn') ||
+                          document.querySelector('.quiz-question-panel .individual-audio-btn');
+            
+            if (button) {
+                toggleIndividualAudio(q.sutraNumber, button);
+            }
+        }
+
+        function toggleIndividualAudio(sutraNumber, button) {
+            if (audioState.isPlaying && audioState.currentButton === button) {
+                stopAllAudio();
+                return;
+            }
+            
+            stopAllAudio();
+            
+            let audioFiles = [];
+            if (sutraNumber === 'ALL_SUTRAS' || sutraNumber === 'ALL') {
+                audioFiles = Object.keys(MP3_FILES).map(num => ({ number: num, file: MP3_FILES[num] }));
+            } else {
+                if (MP3_FILES[sutraNumber]) {
+                    audioFiles = [{ number: sutraNumber, file: MP3_FILES[sutraNumber] }];
+                }
+            }
+            
+            if (audioFiles.length === 0) return;
+            
+            playAudioSequence(audioFiles, 0, button);
+        }
+
+        function playAudioSequence(audioFiles, index, button) {
+            if (index >= audioFiles.length) {
+                stopAllAudio();
+                return;
+            }
+            
+            const audioData = audioFiles[index];
+            const audioUrl = MP3_BASE_URL + audioData.file;
+            
+            if (!audioState.audioElements[audioData.number]) {
+                audioState.audioElements[audioData.number] = new Audio(audioUrl);
+            }
+            
+            const audio = audioState.audioElements[audioData.number];
+            audioState.currentAudio = audio;
+            audioState.currentButton = button;
+            audioState.isPlaying = true;
+            
+            button.classList.add('playing');
+            
+            audio.onended = function() {
+                playAudioSequence(audioFiles, index + 1, button);
+            };
+            
+            audio.onerror = function() {
+                console.error(`Erreur audio: ${audioUrl}`);
+                playAudioSequence(audioFiles, index + 1, button);
+            };
+            
+            audio.play().catch(err => console.error('Erreur lecture:', err));
+        }
+
+        function stopAllAudio() {
+            if (audioState.currentAudio) {
+                audioState.currentAudio.pause();
+                audioState.currentAudio.currentTime = 0;
+            }
+            
+            if (audioState.currentButton) {
+                audioState.currentButton.classList.remove('playing');
+            }
+            
+            document.querySelectorAll('.individual-audio-btn.playing').forEach(btn => {
+                btn.classList.remove('playing');
+            });
+            
+            audioState.currentAudio = null;
+            audioState.currentButton = null;
+            audioState.isPlaying = false;
+        }
+
+        function resetAudioState() {
+            stopAllAudio();
+        }
+
+        function shouldShowMnemonicPhrase(mode, sessionActive, bonusRound) {
+            if (bonusRound) return false;
+            if (mode === 'sutras') return true;
+            if (mode === 'review' && !sessionActive) return true;
+            if ((mode === 'flashcard' || mode === 'quiz') && !sessionActive) return true;
+            return false;
+        }
+
+        function manageMnemonicPhrase(show, context) {
+            const container = document.getElementById('mnemonicPhraseContainer');
+            if (container) {
+                container.style.display = show ? 'block' : 'none';
+            }
+        }
+
+        function cleanAllActionButtons() {
+            document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('flipBtn').style.display = 'none';
+            document.getElementById('hintBtn').style.display = 'none';
+            document.getElementById('answerBtn').style.display = 'none';
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('bonusBtn').style.display = 'none';
+            document.getElementById('hint').style.display = 'none';
+            document.getElementById('feedback').style.display = 'none';
+            document.getElementById('flashcardEvaluation').style.display = 'none';
+            document.getElementById('answer-section').style.display = 'none';
+        }
+
+function updateScore() {
+    const scoreElement = document.getElementById('score');
+    if (scoreElement) {
+        scoreElement.textContent = score + '/' + totalQuestions;
+    }
+    
+    const groupSelector = document.querySelector('.group-selector');
+    const groupNumber = document.getElementById('groupNumber');
+    
+    if (groupSelector && groupNumber) {
+        if (!isBasicMode && currentMode !== 'sutras' && currentMode !== 'review') {
+            groupSelector.style.display = 'inline-flex';
+            groupNumber.textContent = getCurrentGroup();
+        } else {
+            groupSelector.style.display = 'none';
+        }
+    }
+    
+    attachGroupButtonEvent();
+}
+
+        function getCurrentGroup() {
+            if (currentMode === 'flashcard') return flashcardGroup;
+            if (currentMode === 'quiz') return quizGroup;
+            return 1;
+        }
+
+        function toggleGroup() {
+            if (isSessionActive) return;
+            
+            const clickedButton = event.target;
+            if (clickedButton) {
+                clickedButton.classList.add('click-animation');
+                setTimeout(() => clickedButton.classList.remove('click-animation'), 200);
+            }
+            
+            if (currentMode === 'flashcard') {
+                flashcardGroup = (flashcardGroup % 3) + 1;
+            } else if (currentMode === 'quiz') {
+                quizGroup = (quizGroup % 3) + 1;
+            }
+            
+            setTimeout(() => {
+                updateScore();
+                attachGroupButtonEvent();
+            }, 50);
+        }
+
+        function attachGroupButtonEvent() {
+            const groupButton = document.querySelector('.group-selector');
+            if (groupButton && !isSessionActive) {
+                groupButton.removeEventListener('click', handleGroupClick);
+                groupButton.addEventListener('click', handleGroupClick);
+            }
+        }
+
+        function handleGroupClick(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            if (!isSessionActive) {
+                toggleGroup();
+            }
+        }
+
+        function toggleBasicMode() {
+            if (isSessionActive) return;
+            
+            isBasicMode = !isBasicMode;
+            
+            const levelButton = document.getElementById('levelButton');
+            const levelIcon = levelButton.querySelector('.level-icon');
+            const levelLetter = levelButton.querySelector('.level-letter');
+            
+            if (isBasicMode) {
+                levelButton.classList.remove('advanced');
+                levelIcon.textContent = '🌿';
+                levelLetter.textContent = 'B';
+            } else {
+                levelButton.classList.add('advanced');
+                levelIcon.textContent = '🌳';
+                levelLetter.textContent = 'A';
+            }
+            
+            levelButton.classList.add('click-animation');
+            setTimeout(() => levelButton.classList.remove('click-animation'), 200);
+            
+            
+            const shouldShow = shouldShowMnemonicPhrase(currentMode, isSessionActive, isBonusRound);
+            manageMnemonicPhrase(shouldShow, 'changement niveau');
+            
+            if (currentMode === 'review') {
+                stopAllAudio();
+                resetAudioState();
+                document.getElementById('scoreDiv').style.display = 'none';
+                showReview();
+            } else if (isSessionActive && currentMode !== 'sutras') {
+                start();
+            } else if (currentMode !== 'sutras') {
+                reset();
+                setTimeout(() => {
+                    attachGroupButtonEvent();
+                }, 150);
+            }
+        }
+
+        function updateModeIndicator() { }
+
+        function getAdvancedQuestionsInGroups() {
+            const allQuestions = [];
+            
+            sutrasData.forEach(sutra => {
+                const allSutraQuestions = sutra.questions.map(q => ({
+                    ...q,
+                    sutraNumber: sutra.number,
+                    sutraIcon: sutra.icon,
+                    sutraText: sutra.text,
+                    mnemonic: sutra.mnemonic
+                }));
+                
+                allQuestions.push(...allSutraQuestions);
+            });
+            
+            const totalSutras = sutrasData.length;
+            const sutrasPerGroup = Math.ceil(totalSutras / 3);
+            const groups = [[], [], []];
+            
+            for (let i = 0; i < totalSutras; i++) {
+                const groupIndex = Math.floor(i / sutrasPerGroup);
+                if (groupIndex < 3) {
+                    groups[groupIndex].push(...sutrasData[i].questions.map(q => ({
+                        ...q,
+                        sutraNumber: sutrasData[i].number,
+                        sutraIcon: sutrasData[i].icon,
+                        sutraText: sutrasData[i].text,
+                        mnemonic: sutrasData[i].mnemonic
+                    })));
+                }
+            }
+            
+            if (currentMode === 'quiz') {
+                groups.forEach(group => {
+                    for (let i = group.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [group[i], group[j]] = [group[j], group[i]];
+                    }
+                });
+            }
+            
+            return groups;
+        }
+
+        function getAllQuestions() {
+            if (isBasicMode) {
+                const questions = [];
+                sutrasData.forEach(sutra => {
+                    sutra.questions.forEach(q => {
+                        if (q.level === 'basic') {
+                            questions.push({ ...q, sutraNumber: sutra.number, sutraIcon: sutra.icon, sutraText: sutra.text, mnemonic: sutra.mnemonic });
+                        }
+                    });
+                });
+                return questions;
+            } else {
+                const advancedGroups = getAdvancedQuestionsInGroups();
+                const currentGroup = getCurrentGroup();
+                const selectedGroup = advancedGroups[currentGroup - 1] || [];
+                return selectedGroup;
+            }
+        }
+
+        function shuffle(array) {
+            let newArray = array.slice();
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        function setMode(mode, event) {
+            stopAllAudio();
+            resetAudioState();
+            
+            currentMode = mode;
+			document.getElementById('reviewTitleSection').style.display = 'none';
+            document.querySelectorAll('.mode-button').forEach(btn => btn.classList.remove('active'));
+            if (event && event.target) {
+                event.target.classList.add('active');
+                event.target.classList.add('click-animation');
+                setTimeout(() => event.target.classList.remove('click-animation'), 200);
+            }
+            
+            const isSpecialMode = (mode === 'sutras' || mode === 'review');
+            document.getElementById('scoreDiv').style.display = isSpecialMode ? 'none' : 'flex';
+            
+            const levelButton = document.getElementById('levelButton');
+            levelButton.style.display = (mode === 'sutras') ? 'none' : 'inline-flex';
+            
+            const shouldShow = shouldShowMnemonicPhrase(mode, isSessionActive, isBonusRound);
+            manageMnemonicPhrase(shouldShow, `changement mode ${mode}`);
+
+            if (mode === 'review') {
+                showReview();
+            } else {
+                reset();
+            }
+        }
+
+        function reset() {
+            stopAllAudio();
+            resetAudioState();
+            
+            isSessionActive = false;
+            
+            currentIndex = 0;
+            score = 0;
+            totalQuestions = 0;
+            flashcardEvaluated = false;
+            quizEvaluated = false;
+            updateScore();
+            
+            cleanAllActionButtons();
+            
+            const isSpecialMode = (currentMode === 'sutras');
+            
+            const levelButton = document.getElementById('levelButton');
+            levelButton.style.display = isSpecialMode ? 'none' : 'inline-flex';
+            
+            document.getElementById('scoreDiv').style.display = (currentMode === 'sutras' || currentMode === 'review') ? 'none' : 'flex';
+            document.getElementById('reviewTitleSection').style.display = 'none';
+            
+            const shouldShow = shouldShowMnemonicPhrase(currentMode, isSessionActive, isBonusRound);
+            manageMnemonicPhrase(shouldShow, 'reset');
+            
+            if (currentMode === 'sutras') {
+                showSutras();
+                document.getElementById('startBtn').style.display = 'none';
+            } else if (currentMode === 'review') {
+                return;
+            } else {
+                let message = '<p style="text-align: center;">Cliquez sur <button class="inline-start-btn" onclick="start()" aria-label="Commencer">▶️</button> pour se lancer</p>';
+                
+                if (isBasicMode) {
+                    message += '<p class="encouragement">👌 Mode Basique activé - Parfait pour débuter ! 🌱</p>';
+                } else {
+                    const totalQuestions = sutrasData.reduce((sum, sutra) => sum + sutra.questions.length, 0);
+                    message += `<p class="encouragement">👌 Mode Avancé activé - ${totalQuestions} questions en 3 groupes au total ! 🎯</p>`;
+                }
+                
+                document.getElementById('content').innerHTML = message;
+                document.getElementById('startBtn').style.display = 'none';
+                
+                setTimeout(() => {
+                    attachGroupButtonEvent();
+                }, 100);
+            }
+        }
+
+        function showSutras() {
+            let html = `<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h2 style="font-size: 1.2em; text-align: center; margin: 0;">📖 Les ${sutrasData.length} Sutras</h2>
+                            <button class="individual-audio-btn" onclick="toggleIndividualAudio('ALL_SUTRAS', this)" aria-label="Écouter tous les sutras" style="width: 36px; height: 36px;">🎵</button>
+                        </div>`;
+            sutrasData.forEach(sutra => {
+                html += `<div class="sutra-item">
+                            <div class="sutra-item-content">
+                                <div class="icon-display">${sutra.icon}</div>
+                                <p class="sutra-number">${sutra.number}</p>
+                                <div class="sutra-text" style="font-size: 1em; line-height: 1.8;">${sutra.text}</div>
+                            </div>
+                            <button class="individual-audio-btn" onclick="toggleIndividualAudio('${sutra.number}', this)" aria-label="Écouter ${sutra.number}">🎵</button>
+                         </div>`;
+            });
+            html += '<div style="height: 20px;"></div>';
+            document.getElementById('content').innerHTML = html;
+        }
+
+        function start() {
+            if (currentMode === 'review') {
+                showReviewContent();
+                return;
+            }
+            
+            isSessionActive = true;
+            window.quizUserEngaged = false;
+			document.getElementById('scoreDiv').style.display = 'flex';
+document.getElementById('levelButton').style.display = 'none';
+            
+            if (!isBonusRound) {
+                failedQuestions = [];
+                originalScore = 0;
+                originalQuestions = [];
+                
+                if (currentMode === 'flashcard') {
+                    shuffledQuestions = getAllQuestions();
+                } else {
+                    shuffledQuestions = shuffle(getAllQuestions());
+                }
+                
+                originalQuestions = [...shuffledQuestions];
+            }
+            
+            currentIndex = 0;
+            if (!isBonusRound) {
+    score = 0;
+    totalQuestions = shuffledQuestions.length;
+}
+updateScore();
+            document.getElementById('startBtn').style.display = 'none';
+            
+            manageMnemonicPhrase(false, 'session démarrée');
+            
+            if (currentMode === 'quiz' || currentMode === 'flashcard') {
+                document.getElementById('levelButton').style.display = 'none';
+            }
+            
+            if (currentMode === 'quiz') showQuestion();
+            else if (currentMode === 'flashcard') showFlashcard();
+        }
+
+        function startBonusRound() {
+            const bonusBtn = document.getElementById('bonusBtn');
+            bonusBtn.classList.add('click-animation');
+            setTimeout(() => bonusBtn.classList.remove('click-animation'), 200);
+            
+            isBonusRound = true;
+            originalScore = score;
+            shuffledQuestions = currentMode === 'quiz' ? shuffle([...failedQuestions]) : [...failedQuestions];
+            currentIndex = 0;
+            
+            window.quizUserEngaged = false;
+            
+            failedQuestions = [];
+            
+            cleanAllActionButtons();
+            
+            manageMnemonicPhrase(false, 'Tour Bonus démarré');
+            
+            if (currentMode === 'quiz') showQuestion();
+            else if (currentMode === 'flashcard') showFlashcard();
+        }
+
+        function getLevelBadge(level, isReviewMode = false) {
+            const levels = { basic: ['Basique', 'level-basic'], medium: ['Médian', 'level-medium'], advanced: ['Avancé', 'level-advanced'] };
+            const [text, className] = levels[level] || ['', ''];
+            const reviewClass = isReviewMode ? ' review-mode' : '';
+            return `<span class="question-level ${className}${reviewClass}">${text}</span>`;
+        }
+
+        function showQuestion() {
+            stopAllAudio();
+            quizEvaluated = false;
+            const q = shuffledQuestions[currentIndex];
+
+            const levelBadge = isBasicMode ? '' : ` ${getLevelBadge(q.level)}`;
+            const questionPrefix = isBasicMode ? `Q${q.sutraNumber.replace(/[IVX]+\./, '')} : ` : '';
+            
+            document.getElementById('content').innerHTML = 
+                `<div class="flashcard-question-card flashcard-card-spacing">
+                     <div class="flashcard-question-title">
+                         <span>📝 Question</span>
+                         <div style="display: flex; align-items: center; gap: 8px;">
+                             <span style="font-size: 0.9em; opacity: 0.9;">${q.sutraNumber}${levelBadge}</span>
+                             <button class="individual-audio-btn" onclick="toggleMainAudio()" aria-label="Écouter ${q.sutraNumber}" style="width: 32px; height: 32px; font-size: 0.8rem;">🎵</button>
+                         </div>
+                     </div>
+                     <div class="flashcard-question-text">
+                         ${questionPrefix}${q.question}
+                     </div>
+                 </div>
+                 
+                 <div class="flashcard-instruction flashcard-instructor-spacing">
+                     Rédigez votre réponse ci-dessous ✍️
+                 </div>
+                 
+                 <textarea class="answer-input quiz-answer-input" id="answer" rows="6" placeholder="Tapez votre réponse ici..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="margin-top: 8px;"></textarea>
+                 
+                 ${isBasicMode ? '' : `<div class="flashcard-sutra-card flashcard-sutra-spacing">
+    <div class="flashcard-sutra-header">
+        <div class="flashcard-sutra-number">${q.sutraIcon} ${q.sutraNumber}</div>
+        <span style="font-size: 0.85em; color: #666; font-style: italic;">Référence</span>
+    </div>
+    <div class="sutra-text" style="margin: 0; font-size: 1em;">${q.sutraText}</div>
+</div>`}
+                 
+                 <div class="hint" id="hint" role="alert" style="display: none; margin-top: 12px;"></div>`;
+            
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('hintBtn').style.display = 'inline-block';
+            document.getElementById('answerBtn').style.display = 'inline-block';
+            document.getElementById('feedback').style.display = 'none';
+            document.getElementById('hint').style.display = 'none';
+            document.getElementById('flashcardEvaluation').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
+            
+            window.quizUserEngaged = false;
+            
+            setTimeout(() => {
+                const questionCard = document.querySelector('.flashcard-question-card');
+                if (questionCard) {
+                    questionCard.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                
+                addQuizEngagementListeners();
+            }, 100);
+        }
+
+        function showVerifyButton() {
+            if (window.quizUserEngaged) return;
+
+            window.quizUserEngaged = true;
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (submitBtn) {
+                submitBtn.style.display = 'inline-block';
+                submitBtn.classList.add('quiz-verify-appear');
+
+                setTimeout(() => {
+                    submitBtn.classList.remove('quiz-verify-appear');
+                }, 500);
+            }
+        }
+
+        function addQuizEngagementListeners() {
+            const answerBtn = document.getElementById('answerBtn');
+            if (answerBtn) {
+                answerBtn.addEventListener('click', () => {
+                    showVerifyButton();
+                });
+            }
+
+            const answerFields = [
+                document.querySelector('#content .answer-input'),
+                document.getElementById('answer')
+            ];
+
+            answerFields.forEach(field => {
+                if (field) {
+                    field.addEventListener('input', (e) => {
+                        if (e.target.value.trim().length > 0) {
+                            showVerifyButton();
+                        }
+                    });
+
+                    field.addEventListener('paste', () => {
+                        setTimeout(() => {
+                            if (field.value.trim().length > 0) {
+                                showVerifyButton();
+                            }
+                        }, 10);
+                    });
+                }
+            });
+        }
+
+        function showFlashcard() {
+            stopAllAudio();
+            showingFront = true;
+            flashcardEvaluated = false;
+            const q = shuffledQuestions[currentIndex];
+
+            const levelBadge = isBasicMode ? '' : ` ${getLevelBadge(q.level)}`;
+            const questionPrefix = isBasicMode ? `Q${q.sutraNumber.replace(/[IVX]+\./, '')} : ` : '';
+            
+            document.getElementById('content').innerHTML = 
+                `<div class="flashcard-question-card flashcard-card-spacing">
+                     <div class="flashcard-question-title">
+                         <span>📝 Question</span>
+                         <div style="display: flex; align-items: center; gap: 8px;">
+                             <span style="font-size: 0.9em; opacity: 0.9;">${q.sutraNumber}${levelBadge}</span>
+                             <button class="individual-audio-btn" onclick="toggleMainAudio()" aria-label="Écouter ${q.sutraNumber}" style="width: 32px; height: 32px; font-size: 0.8rem;">🎵</button>
+                         </div>
+                     </div>
+                     <div class="flashcard-question-text">
+                         ${questionPrefix}${q.question}
+                     </div>
+                 </div>
+                 
+                 <div class="flashcard-instruction flashcard-instructor-spacing">
+                     Réfléchissez à votre réponse, puis cliquez sur "Retourner" 🤔
+                 </div>
+                 
+                 ${isBasicMode ? '' : `<div class="flashcard-sutra-card flashcard-sutra-spacing">
+    <div class="flashcard-sutra-header">
+        <div class="flashcard-sutra-number">${q.sutraIcon} ${q.sutraNumber}</div>
+        <span style="font-size: 0.85em; color: #666; font-style: italic;">Référence</span>
+    </div>
+    <div class="sutra-text" style="margin: 0; font-size: 1em;">${q.sutraText}</div>
+</div>`}
+                 
+                 <div class="hint" id="hint" role="alert" style="display: none;"></div>`;
+            
+            document.getElementById('flipBtn').style.display = 'inline-block';
+            document.getElementById('flipBtn').textContent = '🔄 Retourner';
+            document.getElementById('hintBtn').style.display = 'inline-block';
+            document.getElementById('answerBtn').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('flashcardEvaluation').style.display = 'none';
+            document.getElementById('feedback').style.display = 'none';
+            
+            setTimeout(() => {
+                const questionCard = document.querySelector('.flashcard-question-card');
+                if (questionCard) {
+                    questionCard.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }, 100);
+        }
+
+        function showReview() {
+    document.getElementById('scoreDiv').style.display = 'flex';
+    document.getElementById('modeIndicator').style.display = 'none';
+    
+    document.getElementById('levelButton').style.display = 'inline-flex';
+    
+    manageMnemonicPhrase(true, 'mode révision');
+            
+            const levelColor = isBasicMode ? '#1e7e34' : '#c82333';
+            const levelText = isBasicMode ? 'Basique' : 'Avancé';
+            
+            document.getElementById('reviewTitleSection').style.display = 'block';
+            document.getElementById('reviewTitle').innerHTML = `<span style="color: #155d9f;">Révision</span> <strong style="color: ${levelColor};">${levelText}</strong>`;
+            
+            cleanAllActionButtons();
+            
+            let message = '<p style="text-align: center;">Cliquez sur <button class="inline-start-btn" onclick="start()" aria-label="Commencer">▶️</button> pour se lancer</p>';
+            if (isBasicMode) {
+                message += '<p class="encouragement">👌 Mode idéal pour réviser les bases ! 📚</p>';
+            } else {
+                const totalQuestions = sutrasData.reduce((sum, sutra) => sum + sutra.questions.length, 0);
+                message += `<p class="encouragement">👌 Révision complète - ${totalQuestions} questions au total ! 📖</p>`;
+            }
+            
+            document.getElementById('content').innerHTML = message;
+        }
+        
+        function showReviewContent() {
+            document.getElementById('scoreDiv').style.display = 'none';
+            document.getElementById('reviewTitleSection').style.display = 'none';
+            
+            document.getElementById('levelButton').style.display = 'none';
+            
+            manageMnemonicPhrase(false, 'révision contenu');
+            
+            const modeText = isBasicMode ? 'Questions Basiques' : 'Toutes les Questions';
+            let html = `<div class="review-title">
+                            <h2 style="font-size: 1.2em;">Mode Révision - ${modeText}</h2>
+                            <button class="individual-audio-btn" onclick="toggleIndividualAudio('ALL', this)" aria-label="Écouter tous les sutras">🎵</button>
+                        </div>`;
+            
+            if (isBasicMode) {
+                html += '<p style="text-align: center; color: #1e7e34; font-size: 0.9em; margin-bottom: 15px; font-weight: 600;">👌 Mode idéal pour commencer l\'apprentissage 🌱</p>';
+            } else {
+                const totalQuestions = sutrasData.reduce((sum, sutra) => sum + sutra.questions.length, 0);
+                html += `<p style="text-align: center; color: #155d9f; font-size: 0.9em; margin-bottom: 15px; font-weight: 600;">👌 Affichage de toutes les questions (${totalQuestions} questions au total) 📚</p>`;
+            }
+            
+            sutrasData.forEach(sutra => {
+                const questionsToShow = isBasicMode ? 
+                    sutra.questions.filter(q => q.level === 'basic') : 
+                    sutra.questions;
+                    
+                if (questionsToShow.length > 0) {
+                    html += `<div class="review-item-header">
+                                <div class="review-item-content">
+                                    <h3 style="margin-top: 20px; color: #155d9f;">${sutra.icon} ${sutra.number}</h3>
+                                    <div class="sutra-text">${sutra.text}</div>
+                                </div>
+                                <button class="individual-audio-btn" onclick="toggleIndividualAudio('${sutra.number}', this)" aria-label="Écouter ${sutra.number}">🎵</button>
+                             </div>`;
+                    questionsToShow.forEach(q => {
+                        const questionPrefix = q.qnum && !q.qnum.includes('m') && !q.qnum.includes('a') ? `${q.qnum} : ` : '';
+                        html += `<div class="review-item review-advanced" style="margin-left: 20px; display: flex; gap: 12px;">
+                                    <div class="review-question-header" style="flex-shrink: 0; width: 75px;">
+                                        <div style="margin-top: 2px;">${getLevelBadge(q.level, true)}</div>
+                                    </div>
+                                    <div style="flex: 1; min-width: 0;">
+                                        <p style="margin: 0 0 8px 0; word-wrap: break-word;"><strong style="color: #155d9f;">Question : ${questionPrefix}</strong><strong>${q.question}</strong></p>
+                                        <p style="margin: 0; word-wrap: break-word;"><strong>R:</strong> ${q.answer}</p>
+                                    </div>
+                                 </div>`;
+                    });
+                }
+            });
+            
+            html += '<div style="height: 40px;"></div>';
+            
+            document.getElementById('content').innerHTML = html;
+        }
+
+        function focusAnswerField() {
+            const answerBtn = document.getElementById('answerBtn');
+            answerBtn.classList.add('click-animation');
+            setTimeout(() => answerBtn.classList.remove('click-animation'), 200);
+            
+            if (currentMode === 'quiz') {
+                showVerifyButton();
+            }
+            
+            let answerField = document.querySelector('#content .answer-input');
+            if (!answerField) {
+                answerField = document.getElementById('answer');
+            }
+            
+            if (answerField) {
+                answerField.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+                
+                setTimeout(() => {
+                    answerField.focus();
+                    answerField.setSelectionRange(answerField.value.length, answerField.value.length);
+                }, 300);
+            }
+        }
+
+        function checkAnswer() {
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.classList.add('click-animation');
+            setTimeout(() => submitBtn.classList.remove('click-animation'), 200);
+            
+            const q = shuffledQuestions[currentIndex];
+           
+            quizEvaluated = false;
+			flashcardEvaluated = false;
+
+            let answerValue = '';
+            
+            const integratedAnswer = document.querySelector('#content .answer-input');
+            if (integratedAnswer) {
+                answerValue = integratedAnswer.value.trim();
+            } else {
+                answerValue = document.getElementById('answer').value.trim();
+            }
+
+            const feedbackEl = document.getElementById('feedback');
+            feedbackEl.className = 'feedback';
+            feedbackEl.innerHTML = `
+                <div class="flashcard-question-card" style="background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%); margin-bottom: 15px;">
+                    <div class="flashcard-question-title">
+                        <span>✅ Réponse attendue</span>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 0.9em; opacity: 0.9;">${q.sutraNumber}</span>
+                            <button class="individual-audio-btn" onclick="toggleMainAudio()" aria-label="Écouter ${q.sutraNumber}" style="width: 32px; height: 32px; font-size: 0.8rem;">🎵</button>
+                        </div>
+                    </div>
+                    <div class="flashcard-question-text" style="font-size: 1.1em; line-height: 1.6;">
+                        ${q.answer}
+                    </div>
+                </div>
+                
+                ${isBasicMode ? '' : `<div class="flashcard-sutra-card">
+    <div class="flashcard-sutra-header">
+        <div class="flashcard-sutra-number">${q.sutraIcon} ${q.sutraNumber}</div>
+        <span style="font-size: 0.85em; color: #666; font-style: italic;">Référence</span>
+    </div>
+    <div class="sutra-text" style="margin: 0; font-size: 1em;">${q.sutraText}</div>
+</div>`}
+            `;
+            feedbackEl.style.display = 'block';
+
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('hintBtn').style.display = 'none';
+            document.getElementById('answerBtn').style.display = 'none';
+            
+            document.getElementById('flashcardEvaluation').style.display = 'block';
+            
+            setTimeout(() => {
+                feedbackEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+
+        function showHint() {
+            const hintBtn = document.getElementById('hintBtn');
+            hintBtn.classList.add('click-animation');
+            setTimeout(() => hintBtn.classList.remove('click-animation'), 200);
+            
+            const hintEl = document.getElementById('hint');
+            const q = shuffledQuestions[currentIndex];
+            hintEl.innerHTML = `<strong style="color: #1e7e34; font-style: italic;">✨ Indice :</strong> <span style="color: #1e7e34; font-style: italic; font-weight: 600;">${q.hint}</span><br><div class="mnemonic" style="margin-top: 8px;">Mnémonique du sutra : ${q.mnemonic}</div>`;
+            hintEl.style.display = 'block';
+            
+            if (currentMode === 'flashcard') {
+                setTimeout(() => {
+                    const scrollableContent = document.querySelector('.scrollable-content');
+                    if (scrollableContent && hintEl) {
+                        hintEl.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                    }
+                }, 100);
+            } else {
+                setTimeout(() => hintEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+            }
+        }
+
+        function evaluateQuiz(points) {
+            if (quizEvaluated) return;
+            
+            quizEvaluated = true;
+            score += points;
+            
+            if (points === 0) {
+                failedQuestions.push({
+                    ...shuffledQuestions[currentIndex],
+                    originalIndex: currentIndex
+                });
+            }
+            
+            let message = '';
+            let feedbackClass = 'incorrect';
+            
+            if (points === 1) {
+                message = '✓ Excellent ! Vous maîtrisez bien cette réponse';
+                feedbackClass = 'correct';
+                if (isBasicMode) {
+                    message += '<br><p style="color: #1e7e34; font-size: 0.9em; margin-top: 5px; font-weight: 600;">👌 Bravo ! Continuez ainsi ! 👏</p>';
+                }
+            } else if (points === 0.5) {
+                message = '≈ Bien ! Vous avez saisi l\'essentiel';
+                feedbackClass = 'partial';
+            } else {
+                message = '✗ Continuez à étudier ce sutra pour mieux le comprendre';
+                feedbackClass = 'incorrect';
+            }
+            
+            const q = shuffledQuestions[currentIndex];
+            const feedbackEl = document.getElementById('feedback');
+            feedbackEl.className = `feedback ${feedbackClass}`;
+            feedbackEl.innerHTML = `<strong>${message}</strong><br>La réponse attendue était : <em>${q.answer}</em>`;
+            
+            document.getElementById('flashcardEvaluation').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'inline-block';
+            
+            updateScore();
+        }
+
+        function evaluateFlashcard(points) {
+            if (flashcardEvaluated) return;
+            
+            flashcardEvaluated = true;
+            
+            score += points;
+            
+            if (points === 0) {
+                failedQuestions.push({
+                    ...shuffledQuestions[currentIndex],
+                    originalIndex: currentIndex
+                });
+            }
+            
+            let message = '';
+            if (points === 1) {
+                message = '👌 Excellent ! Vous maîtrisez ce sutra 🎉';
+            } else if (points === 0.5) {
+                message = '👌 Bien ! Relisez pour améliorer votre compréhension 📚';
+            } else {
+                message = '👌 Continuez à étudier ce sutra pour le mémoriser 💪';
+            }
+            
+            const feedbackEl = document.getElementById('feedback');
+            feedbackEl.className = `feedback ${points >= 0.7 ? 'correct' : points > 0 ? 'partial' : 'incorrect'}`;
+            feedbackEl.innerHTML = `<strong>${message}</strong>`;
+            feedbackEl.style.display = 'block';
+            
+            document.getElementById('flashcardEvaluation').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'inline-block';
+			document.getElementById('flipBtn').style.display = 'none';
+            
+            updateScore();
+            
+            setTimeout(() => {
+                feedbackEl.style.display = 'none';
+            }, 2000);
+        }
+
+        function nextQuestion() {
+            const nextBtn = document.getElementById('nextBtn');
+            nextBtn.classList.add('click-animation');
+            setTimeout(() => nextBtn.classList.remove('click-animation'), 200);
+            
+            currentIndex++;
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('feedback').style.display = 'none';
+            
+            window.quizUserEngaged = false;
+            
+            if (currentIndex < shuffledQuestions.length) {
+                if (currentMode === 'quiz') showQuestion();
+                else if (currentMode === 'flashcard') showFlashcard();
+            } else {
+                showResults();
+            }
+        }
+
+        function flipCard() {
+            const flipBtn = document.getElementById('flipBtn');
+            flipBtn.classList.add('click-animation');
+            setTimeout(() => flipBtn.classList.remove('click-animation'), 200);
+            
+            const q = shuffledQuestions[currentIndex];
+            const levelBadge = isBasicMode ? '' : ` ${getLevelBadge(q.level)}`;
+            
+            if (showingFront) {
+                document.getElementById('content').innerHTML = 
+                    `<div class="flashcard-question-card" style="background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);">
+                         <div class="flashcard-question-title">
+                             <span>✅ Réponse</span>
+                             <div style="display: flex; align-items: center; gap: 8px;">
+                                 <span style="font-size: 0.9em; opacity: 0.9;">${q.sutraNumber}${levelBadge}</span>
+                                 <button class="individual-audio-btn" onclick="toggleMainAudio()" aria-label="Écouter ${q.sutraNumber}" style="width: 32px; height: 32px; font-size: 0.8rem;">🎵</button>
+                             </div>
+                         </div>
+                         <div class="flashcard-question-text" style="font-size: 1.1em; line-height: 1.6;">
+                             ${q.answer}
+                         </div>
+                     </div>
+                     
+                     <div class="flashcard-instruction" style="background-color: #e7f3ff; border-color: #b3d9ff;">
+                         Comment avez-vous répondu ? Évaluez-vous honnêtement 🎯
+                     </div>
+                     
+                     ${isBasicMode ? '' : `<div class="flashcard-sutra-card">
+    <div class="flashcard-sutra-header">
+        <div class="flashcard-sutra-number">${q.sutraIcon} ${q.sutraNumber}</div>
+        <span style="font-size: 0.85em; color: #666; font-style: italic;">Référence</span>
+    </div>
+    <div class="sutra-text" style="margin: 0; font-size: 1em;">${q.sutraText}</div>
+</div>`}`;
+                
+                document.getElementById('flipBtn').textContent = '↩️ Question';
+                document.getElementById('flashcardEvaluation').style.display = 'block';
+                document.getElementById('hintBtn').style.display = 'none';
+                showingFront = false;
+                
+                setTimeout(() => {
+                    const responseCard = document.querySelector('.flashcard-question-card');
+                    if (responseCard) {
+                        responseCard.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }, 100);
+            } else {
+                showFlashcard();
+            }
+        }
+
+        function showResults() {
+            stopAllAudio();
+            resetAudioState();
+            
+            isSessionActive = false;
+            
+            document.getElementById('levelButton').style.display = 'inline-flex';
+            
+            manageMnemonicPhrase(true, 'résultats');
+            
+            const percentage = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
+            let message = '';
+            let emoji = '';
+            
+            if (percentage >= 90) {
+                message = 'Excellente maîtrise !';
+                emoji = '🌟';
+            } else if (percentage >= 70) {
+                message = 'Très bien !';
+                emoji = '👏';
+            } else if (percentage >= 50) {
+                message = 'Bon travail, continuez !';
+                emoji = '💪';
+            } else {
+                message = 'Revoyez les sutras';
+                emoji = '📚';
+            }
+            
+            let finalMessage = `<h2 style="color: #155d9f;">${emoji} ${message}</h2>`;
+            finalMessage += `<p style="font-size: 1.3em; margin: 20px 0;">Score final : <strong>${score}/${totalQuestions}</strong> (${percentage}%)</p>`;
+            
+            if (!isBonusRound && failedQuestions.length > 0) {
+                finalMessage += `<p style="color: #c82333; font-weight: 600;">Questions à améliorer : ${failedQuestions.length}</p>`;
+            }
+            
+            if (isBonusRound) {
+                const bonusScore = score - originalScore;
+                const bonusPercentage = failedQuestions.length + bonusQuestions.length > 0 
+                    ? Math.round((bonusScore / (failedQuestions.length + bonusQuestions.length)) * 100) 
+                    : 0;
+                
+                finalMessage += `<p style="margin-top: 20px; padding: 15px; background-color: #fff3cd; border-radius: 8px; border: 2px solid #ffc107;">
+                                    <strong>🎯 Tour Bonus :</strong><br>
+                                    Score bonus : ${bonusScore}/${failedQuestions.length + bonusQuestions.length} (${bonusPercentage}%)
+                                 </p>`;
+                
+                isBonusRound = false;
+                bonusQuestions = [];
+            }
+            
+            if (!isBonusRound && failedQuestions.length > 0) {
+                finalMessage += '<p style="text-align: center; margin-top: 20px;">';
+                finalMessage += '<button class="inline-start-btn" onclick="startBonusRound()" style="background-color: #ffc107;">🎯</button>';
+                finalMessage += '</p>';
+                
+                document.getElementById('bonusBtn').style.display = 'inline-block';
+            } else {
+                finalMessage += '<p style="text-align: center; margin-top: 20px;">';
+                finalMessage += '<button class="inline-start-btn" onclick="start()" aria-label="Recommencer">🔄</button>';
+                finalMessage += '</p>';
+                
+                document.getElementById('bonusBtn').style.display = 'none';
+            }
+            
+            document.getElementById('content').innerHTML = finalMessage;
+            
+            cleanAllActionButtons();
+            
+            if (!isBonusRound && failedQuestions.length > 0) {
+                document.getElementById('bonusBtn').style.display = 'inline-block';
+            }
+        }
+
+        window.addEventListener('load', function() {
+            console.log('🕉️ Yoga Sutras II.01-II.15 - Sādhana Pāda v1.0');
+            console.log(`Série : ${sutrasData.length} sutras chargés`);
+            console.log(`Total questions : ${sutrasData.length * 5}`);
+            
+            const isValid = validateSutrasData();
+            if (!isValid) {
+                console.error('⚠️ Erreurs dans les données - Vérifiez la console');
+            }
+            
+            reset();
+            
+            window.addEventListener('resize', function() {
+                // Gestion responsive si nécessaire
+            });
+            
+            console.log('✅ Application initialisée');
+        });
+        /* ═══════════════════════════════════════════════════════════════
+           FIN ZONE 5/5 : LOGIQUE JAVASCRIPT - NE PAS MODIFIER
+           ════════════════════════════════════════════════════════════ */
+
+    </script>
+</body>
+</html>
